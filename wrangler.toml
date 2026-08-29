@@ -16,10 +16,11 @@ pages_build_output_dir = "web_root"
 binding = "MCC_SUBMISSIONS"
 id = "86439abda36f425dbd499949866a6344"
 
-# Optional email copies of submissions: enable Email Routing on montrealcigarclub.ca, then
-# uncomment and set MAIL_TO (a verified destination address).
-# [[send_email]]
-# name = "EMAIL"
-# [vars]
-# MAIL_TO = "you@example.com"
-# MAIL_FROM = "concierge@montrealcigarclub.ca"
+# Email notifications (Cloudflare Email Service). Requires montrealcigarclub.ca onboarded to Email Sending.
+# Transport 1: the send_email binding below. Transport 2 (fallback): secret EMAIL_API_TOKEN with Email Sending permission.
+[[send_email]]
+name = "EMAIL"
+
+[vars]
+MAIL_TO = "admissions@montrealcigarclub.ca"
+MAIL_FROM = "admissions@montrealcigarclub.ca"

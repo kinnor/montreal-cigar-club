@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDossiers();
   initForms();
   initActiveNav();
+  initAvailability();
   if (window.lucide) lucide.createIcons();
 });
 
@@ -163,9 +164,14 @@ function initModals() {
     openModal('modal-apply');
   }));
   document.querySelectorAll('[data-rsvp]').forEach(b => b.addEventListener('click', () => {
-    const ev = b.getAttribute('data-rsvp');
-    document.getElementById('rsvp-event').value = ev;
-    document.getElementById('rsvp-event-label').textContent = ev;
+    if (b.disabled) return;
+    const id = b.getAttribute('data-rsvp');
+    const card = b.closest('.card-luxury');
+    const title = card ? card.querySelector('h3').textContent.trim() : id;
+    const day = card ? card.querySelector('.font-cinzel.text-2xl').textContent.trim() : '';
+    const month = card ? card.querySelector('[data-i18n$=".month"]').textContent.trim() : '';
+    document.getElementById('rsvp-event').value = id;
+    document.getElementById('rsvp-event-label').textContent = title + ' · ' + day + ' ' + month;
     openModal('modal-rsvp');
   }));
 }
@@ -258,8 +264,9 @@ function bindForm(id, endpoint, okKey) {
     try {
       const r = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
       if (r.status === 429) { show(L('form.rate'), 'err'); }
+      else if (r.status === 409) { show(L('form.full'), 'err'); initAvailability(); }
       else if (!r.ok) { show(L('form.err'), 'err'); }
-      else { show(L(okKey), 'ok'); form.reset(); setTimeout(closeModals, 3500); }
+      else { show(L(okKey), 'ok'); form.reset(); setTimeout(closeModals, 3500); if (endpoint === '/api/rsvp') initAvailability(); }
     } catch (err) { show(L('form.err'), 'err'); }
     finally { btn.disabled = false; btn.textContent = label; }
   });
@@ -281,3 +288,35 @@ function initActiveNav() {
   sections.forEach(s => io.observe(s));
   links.forEach(a => a.addEventListener('click', () => setActive(a.getAttribute('href').slice(1))));
 }
+
+/* ==========================================================================
+   10. SALON AVAILABILITY (GET /api/events) — seats left, disable when full
+   ========================================================================== */
+let availabilityCache = null;
+async function initAvailability() {
+  const badges = document.querySelectorAll('[data-seats]');
+  if (!badges.length) return;
+  try {
+    const r = await fetch('/api/events', { cache: 'no-store' });
+    if (!r.ok) return;
+    availabilityCache = (await r.json()).events || {};
+  } catch (e) { return; }
+  renderAvailability();
+}
+function renderAvailability() {
+  if (!availabilityCache) return;
+  document.querySelectorAll('[data-seats]').forEach(badge => {
+    const id = badge.getAttribute('data-seats');
+    const ev = availabilityCache[id]; if (!ev) return;
+    const txt = badge.querySelector('[data-seats-text]');
+    const btn = document.querySelector('[data-rsvp="' + id + '"]');
+    badge.hidden = false;
+    badge.classList.remove('text-emerald-400', 'text-red-400', 'text-slate-500');
+    if (ev.past) { txt.textContent = L('events.past'); badge.classList.add('text-slate-500'); }
+    else if (ev.full) { txt.textContent = L('events.full'); badge.classList.add('text-red-400'); }
+    else { txt.textContent = ev.remaining === 1 ? L('events.seatLeft') : L('events.seatsLeft').replace('{n}', ev.remaining); badge.classList.add('text-emerald-400'); }
+    if (btn) { const off = ev.full || ev.past; btn.disabled = off; btn.classList.toggle('opacity-40', off); btn.classList.toggle('cursor-not-allowed', off); }
+  });
+  if (window.lucide) lucide.createIcons();
+}
+document.addEventListener('mcc:lang', renderAvailability);

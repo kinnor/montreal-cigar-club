@@ -40,7 +40,7 @@ window.I18N = {
     'events.kicker': 'Salons & Soirées',
     'events.title': 'The <span class="text-gold-gradient">2026 Season</span>',
     'events.sub': 'Private reserves, vintage rum pairings, and analog vinyl jazz — overlooking the illuminated Mount Royal skyline.',
-    'events.rsvp': 'RSVP',
+    'events.rsvp': 'RSVP', 'events.seatsLeft': '{n} seats left', 'events.seatLeft': '1 seat left', 'events.full': 'Fully booked', 'events.past': 'Past event',
     'events.e1.month': 'Sep 2026', 'events.e1.title': 'Soirée Dégustation — Penthouse Edition', 'events.e1.desc': 'E.P. Carrillo Encore with Rémy Martin XO. Oscar Peterson on vinyl. Twenty guests, one skyline.', 'events.e1.place': 'Private penthouse, downtown Montreal', 'events.e1.cap': '20 guests',
     'events.e2.month': 'Oct 2026', 'events.e2.title': 'Maduro & Rum — Autumn Salon', 'events.e2.desc': 'Padrón 1964 Maduro against Diplomático Reserva Exclusiva. Miles Davis, Kind of Blue, first pressing.', 'events.e2.place': 'Golden Square Mile salon', 'events.e2.cap': '16 guests',
     'events.e3.month': 'Nov 2026', 'events.e3.title': 'Islay Night — Peat & Oscuro', 'events.e3.desc': "My Father Le Bijou 1922 with Lagavulin 16. Chet Baker, late and quiet. Founders' lockers open for the evening.", 'events.e3.place': 'The Vault, members only', 'events.e3.cap': '12 guests',
@@ -94,7 +94,7 @@ window.I18N = {
     'form.sending': 'Sending…', 'form.ok.apply': 'Received. The Membership Committee will review your application with strict discretion and reply within thirty days.',
     'form.ok.rsvp': 'Received. If a seat is available, the concierge will confirm by email.',
     'form.err': 'Something went wrong. Please try again, or write to concierge@montrealcigarclub.ca.',
-    'form.invalid': 'Please complete the required fields.', 'form.rate': 'Too many requests from this connection. Please try again later.',
+    'form.invalid': 'Please complete the required fields.', 'form.full': 'This salon is now fully booked. Write to concierge@montrealcigarclub.ca to join the waiting list.', 'form.rate': 'Too many requests from this connection. Please try again later.',
 
     'legal.back': '← Back to the club'
   },
@@ -135,7 +135,7 @@ window.I18N = {
     'events.kicker': 'Salons et soirées',
     'events.title': 'La <span class="text-gold-gradient">saison 2026</span>',
     'events.sub': 'Réserves privées, accords de rhums millésimés et jazz sur vinyle — avec vue sur le mont Royal illuminé.',
-    'events.rsvp': 'Réserver',
+    'events.rsvp': 'Réserver', 'events.seatsLeft': '{n} places restantes', 'events.seatLeft': '1 place restante', 'events.full': 'Complet', 'events.past': 'Événement passé',
     'events.e1.month': 'Sept. 2026', 'events.e1.title': 'Soirée dégustation — édition penthouse', 'events.e1.desc': 'E.P. Carrillo Encore et Rémy Martin XO. Oscar Peterson sur vinyle. Vingt convives, une seule skyline.', 'events.e1.place': 'Penthouse privé, centre-ville de Montréal', 'events.e1.cap': '20 convives',
     'events.e2.month': 'Oct. 2026', 'events.e2.title': 'Maduro et rhum — salon d’automne', 'events.e2.desc': 'Padrón 1964 Maduro face au Diplomático Reserva Exclusiva. Miles Davis, Kind of Blue, premier pressage.', 'events.e2.place': 'Salon du Mille carré doré', 'events.e2.cap': '16 convives',
     'events.e3.month': 'Nov. 2026', 'events.e3.title': 'Nuit d’Islay — tourbe et Oscuro', 'events.e3.desc': 'My Father Le Bijou 1922 avec Lagavulin 16. Chet Baker, tard et en douceur. Les casiers des fondateurs sont ouverts pour la soirée.', 'events.e3.place': 'La cave, membres seulement', 'events.e3.cap': '12 convives',
@@ -189,7 +189,7 @@ window.I18N = {
     'form.sending': 'Envoi…', 'form.ok.apply': 'Bien reçu. Le comité d’adhésion examinera votre demande en toute discrétion et vous répondra dans les trente jours.',
     'form.ok.rsvp': 'Bien reçu. Si une place est disponible, le concierge confirmera par courriel.',
     'form.err': 'Une erreur est survenue. Veuillez réessayer ou écrire à concierge@montrealcigarclub.ca.',
-    'form.invalid': 'Veuillez remplir les champs obligatoires.', 'form.rate': 'Trop de demandes depuis cette connexion. Veuillez réessayer plus tard.',
+    'form.invalid': 'Veuillez remplir les champs obligatoires.', 'form.full': 'Ce salon est maintenant complet. Écrivez à concierge@montrealcigarclub.ca pour la liste d’attente.', 'form.rate': 'Trop de demandes depuis cette connexion. Veuillez réessayer plus tard.',
 
     'legal.back': '← Retour au club'
   }
