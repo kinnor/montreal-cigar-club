@@ -133,7 +133,7 @@ still stored in KV and readable via the admin endpoint.
 Pages Functions cannot use the `send_email` binding, so the site calls the Email Sending REST API.
 
 1. **Onboard the sending domain**: Dashboard → *Compute & AI → Email Service → Email Sending → Onboard domain → montrealcigarclub.ca → Add records and onboard* (adds SPF + DKIM automatically).
-2. **Receive at `admissions@`**: *montrealcigarclub.ca → Email → Email Routing* → add destination = your private address (verify the link) → rules: `admissions`, `concierge`, `vault` → forward to it.
+2. **Receive at `admissions@`** — ✅ DONE 2026-08-29: Email Routing on montrealcigarclub.ca forwards `concierge@`, `admissions@`, `vault@` → rossen.kinov@gmail.com (all Active).
 3. **API token**: https://dash.cloudflare.com/profile/api-tokens → Create Token → Custom → permission **Account · Email Sending · Edit** (scope: this account) → copy it → run
    `powershell -ExecutionPolicy Bypass -File scripts/with-secrets.ps1 npx wrangler pages secret put EMAIL_API_TOKEN --project-name=montreal-cigar-club` and paste the token.
 4. Redeploy (or the next deploy picks it up). Submit a test application; the record's `mail` field turns from `skipped` to `rest`.

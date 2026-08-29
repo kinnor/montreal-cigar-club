@@ -23,7 +23,7 @@ The club's official domain assets have been successfully acquired and registered
 * **DNS Redirection:** Cloudflare Redirect Rule (301 Permanent):  
   `https://mtlcigarclub.ca/*` ➔ `https://montrealcigarclub.ca/$1`  
   `https://mtlcigarclub.com/*` ➔ `https://montrealcigarclub.ca/$1`
-* **Email Routing (Free):** Cloudflare Email Routing configured to forward:
+* **Email Routing (Free) — ✅ ACTIVE since 2026-08-29.** Cloudflare Email Routing forwards these addresses to the founder's private inbox (rossen.kinov@gmail.com):
   * `concierge@montrealcigarclub.ca` ➔ Private Personal Email
   * `admissions@montrealcigarclub.ca` ➔ Private Personal Email
   * `vault@montrealcigarclub.ca` ➔ Private Personal Email
