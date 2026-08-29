@@ -127,3 +127,15 @@ still stored in KV and readable via the admin endpoint.
 - Sections: Humidor, Pairing Engine (bilingual notes), Events 2026 with RSVP, The Vault, Membership, About & Gallery
 - Legal: `privacy.html` (Law 25 / PIPEDA) and `terms.html`, bilingual
 - `robots.txt`, `sitemap.xml`, JSON-LD Organization, hreflang
+
+## 9. Email notifications — one-time setup (Cloudflare Email Service)
+
+Pages Functions cannot use the `send_email` binding, so the site calls the Email Sending REST API.
+
+1. **Onboard the sending domain**: Dashboard → *Compute & AI → Email Service → Email Sending → Onboard domain → montrealcigarclub.ca → Add records and onboard* (adds SPF + DKIM automatically).
+2. **Receive at `admissions@`**: *montrealcigarclub.ca → Email → Email Routing* → add destination = your private address (verify the link) → rules: `admissions`, `concierge`, `vault` → forward to it.
+3. **API token**: https://dash.cloudflare.com/profile/api-tokens → Create Token → Custom → permission **Account · Email Sending · Edit** (scope: this account) → copy it → run
+   `powershell -ExecutionPolicy Bypass -File scripts/with-secrets.ps1 npx wrangler pages secret put EMAIL_API_TOKEN --project-name=montreal-cigar-club` and paste the token.
+4. Redeploy (or the next deploy picks it up). Submit a test application; the record's `mail` field turns from `skipped` to `rest`.
+
+Senders/recipients are set in `wrangler.toml` `[vars]`: `MAIL_TO` (committee inbox) and `MAIL_FROM` (must be on the onboarded domain).
