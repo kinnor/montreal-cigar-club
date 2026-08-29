@@ -1,6 +1,6 @@
 # Deployment — Cloudflare Pages + Workers
 
-Canonical domain: **montrealcigarclub.ca** · Redirect domain: **mtlcigarclub.ca** (301 → canonical)
+Canonical domain: **montrealcigarclub.ca** · Redirect domains: **mtlcigarclub.ca**, **mtlcigarclub.com** (301 → canonical)
 Both zones are on Cloudflare Registrar, so DNS/SSL/Pages/Workers live in one account.
 
 ## Layout
@@ -11,7 +11,7 @@ Both zones are on Cloudflare Registrar, so DNS/SSL/Pages/Workers live in one acc
 | `web_root/_headers` | Security + cache headers (CSP, HSTS, nosniff, frame-ancestors) |
 | `web_root/_redirects` | Clean section routes + legacy asset paths |
 | `wrangler.toml` | Pages project config (`montreal-cigar-club`, compat `2026-08-01`) |
-| `workers/redirect/` | Worker that 301s `mtlcigarclub.ca/*` → `https://montrealcigarclub.ca/*` |
+| `workers/redirect/` | Worker that 301s `mtlcigarclub.ca/*` and `mtlcigarclub.com/*` → `https://montrealcigarclub.ca/*` |
 | `scripts/check-site.mjs` | Pre-deploy integrity check (`npm run check`) |
 
 ## 1. Pre-flight
@@ -51,13 +51,13 @@ Dashboard → **Workers & Pages → montreal-cigar-club → Custom domains → S
 1. Add `montrealcigarclub.ca` — Cloudflare creates the CNAME automatically because the zone is in the same account. Wait for status **Active** (SSL issues in ~1–5 min).
 2. Optionally add `www.montrealcigarclub.ca` the same way, then add a Redirect Rule `www → apex` (see §5, same pattern).
 
-## 5. Redirect `mtlcigarclub.ca` → `montrealcigarclub.ca`
+## 5. Redirect `mtlcigarclub.ca` / `mtlcigarclub.com` → `montrealcigarclub.ca`
 
 Pages `_redirects` cannot match hostnames, so use **one** of these:
 
 ### Option A — Zone Redirect Rule (no code, recommended)
 
-Dashboard → zone **mtlcigarclub.ca → Rules → Redirect Rules → Create rule**
+Dashboard → zone **mtlcigarclub.ca → Rules → Redirect Rules → Create rule** (repeat for zone **mtlcigarclub.com**)
 
 | Field | Value |
 |-------|-------|
@@ -77,12 +77,12 @@ Prerequisite: the zone needs a **proxied** DNS record so requests reach Cloudfla
 npx wrangler deploy --config workers/redirect/wrangler.toml
 ```
 
-The Worker binds to routes `mtlcigarclub.ca/*` and `www.mtlcigarclub.ca/*`, preserves path + query, and returns 301 with `X-Robots-Tag: noindex`.
+The Worker binds to routes `mtlcigarclub.ca/*`, `www.mtlcigarclub.ca/*`, `mtlcigarclub.com/*` and `www.mtlcigarclub.com/*`, preserves path + query, and returns 301 with `X-Robots-Tag: noindex`.
 
 ### Verify
 
 ```bash
-curl -I https://mtlcigarclub.ca/pairing?x=1
+curl -I https://mtlcigarclub.ca/pairing?x=1     # same for https://mtlcigarclub.com/
 # HTTP/2 301  location: https://montrealcigarclub.ca/pairing?x=1
 curl -I https://montrealcigarclub.ca/
 # HTTP/2 200  content-security-policy: ...  strict-transport-security: ...

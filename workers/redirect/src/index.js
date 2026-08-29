@@ -1,5 +1,5 @@
 /**
- * mtlcigarclub.ca -> montrealcigarclub.ca permanent redirect.
+ * mtlcigarclub.ca / mtlcigarclub.com -> montrealcigarclub.ca permanent redirect.
  * Preserves path and query string; strips "www."; 301 is cacheable by browsers.
  */
 export default {

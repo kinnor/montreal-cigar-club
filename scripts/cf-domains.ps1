@@ -34,6 +34,7 @@ if (-not $zones) { throw 'No zones visible to this token (needs Zone:Read).' }
 $zones | ForEach-Object { Write-Host "zone: $($_.name)  id=$($_.id)  status=$($_.status)" }
 $zMain = $zones | Where-Object name -eq 'montrealcigarclub.ca'
 $zMtl  = $zones | Where-Object name -eq 'mtlcigarclub.ca'
+$zMtlCom = $zones | Where-Object name -eq 'mtlcigarclub.com'
 
 # --- Pages custom domains
 Write-Host "`n== Pages custom domains on $PROJECT"
@@ -55,6 +56,11 @@ if ($zMtl) {
   Ensure-Dns $zMtl.id 'AAAA' 'mtlcigarclub.ca' '100::'
   Ensure-Dns $zMtl.id 'AAAA' 'www.mtlcigarclub.ca' '100::'
 } else { Write-Host 'zone mtlcigarclub.ca not visible' }
+if ($zMtlCom) {
+  Write-Host "`n== DNS on mtlcigarclub.com (proxied placeholders for Worker route)"
+  Ensure-Dns $zMtlCom.id 'AAAA' 'mtlcigarclub.com' '100::'
+  Ensure-Dns $zMtlCom.id 'AAAA' 'www.mtlcigarclub.com' '100::'
+} else { Write-Host 'zone mtlcigarclub.com not visible (not yet added to this Cloudflare account?)' }
 
 Write-Host "`n== Pages domain status"
 (CF GET "/accounts/$ACCOUNT/pages/projects/$PROJECT/domains").result | ForEach-Object { Write-Host "  $($_.name): $($_.status) / cert=$($_.certificate_authority) / validation=$($_.validation_data.status)" }

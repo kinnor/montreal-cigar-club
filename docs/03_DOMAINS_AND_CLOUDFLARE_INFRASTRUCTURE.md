@@ -8,6 +8,7 @@
 | Registered Domain | Registrar | Status | Strategic Role |
 | :--- | :--- | :--- | :--- |
 | **montrealcigarclub.ca** | **Cloudflare Registrar** | ✅ **Active / Owned** | **Primary Canonical Domain** (*Official Web Identity*) |
+| **mtlcigarclub.com** | **Cloudflare Registrar** | ✅ **Active / Owned** (added 2026-08-29) | **Short URL, global .com** (*301 redirect to primary*) |
 | **mtlcigarclub.ca** | **Cloudflare Registrar** | ✅ **Active / Owned** | **Short URL / Fast Redirect** (*Mobile & marketing shortcut*) |
 
 ---
@@ -22,7 +23,7 @@
   * Direct continuous deployment from Git repository.
 
 ### B. URL Redirection Rules (301 Permanent)
-* **Rule:** https://mtlcigarclub.ca/* ➔ https://montrealcigarclub.ca/
+* **Rule:** https://mtlcigarclub.ca/* and https://mtlcigarclub.com/* ➔ https://montrealcigarclub.ca/
 * **Canonical Host:** All traffic standardizes on https://montrealcigarclub.ca.
 
 ### C. Free Cloudflare Email Routing

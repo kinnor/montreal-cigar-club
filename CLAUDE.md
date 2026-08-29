@@ -21,7 +21,7 @@ Private members' cigar club in Montreal, Quebec (*Club de Cigare de Montréal*).
 - Static site, no bundler. Tailwind via play CDN (`cdn.tailwindcss.com`, config inline in `index.html`), Lucide icons via CDN, Google Fonts.
 - Chosen visual concept: **Midnight Obsidian** (`Website_Concept_2_Midnight_Obsidian.jpg`).
 - i18n: every user-facing string carries `data-en` / `data-fr`; `initLanguageToggle()` swaps them. New text must include both.
-- Domains (purchased 2026-08-29, Cloudflare Registrar): **`montrealcigarclub.ca`** (primary) and **`mtlcigarclub.ca`** (301 redirect to primary). No `.com` owned. Hosting: Cloudflare Pages; email via Cloudflare Email Routing (`concierge@`, `admissions@`, `vault@`). Preview locally with `python -m http.server 8080`.
+- Domains (purchased 2026-08-29, Cloudflare Registrar): **`montrealcigarclub.ca`** (primary), **`mtlcigarclub.ca`** and **`mtlcigarclub.com`** (both 301 redirect to primary; .com added later on 2026-08-29). No `.com` owned. Hosting: Cloudflare Pages; email via Cloudflare Email Routing (`concierge@`, `admissions@`, `vault@`). Preview locally with `python -m http.server 8080`.
 - Cloudflare and GitHub tokens live in `secrets/` (user-authorised for tool access 2026-08-29). **Never read or print them.** Run tools through `scripts/with-secrets.ps1`, which loads them as env vars for the child process only:
   `powershell -ExecutionPolicy Bypass -File scripts/with-secrets.ps1 npx wrangler whoami`
   GitHub: `gh` is already logged in via keyring (account `kinnor`) — use it directly. The token in `secrets/rossen-kinov-git-hub-key.txt` was rejected by GitHub on 2026-08-29; pass `-GitHub` to the helper only after the user refreshes it.
