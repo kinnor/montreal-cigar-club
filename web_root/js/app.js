@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initDossiers();
   initForms();
+  initActiveNav();
   if (window.lucide) lucide.createIcons();
 });
 
@@ -262,4 +263,21 @@ function bindForm(id, endpoint, okKey) {
     } catch (err) { show(L('form.err'), 'err'); }
     finally { btn.disabled = false; btn.textContent = label; }
   });
+}
+
+/* ==========================================================================
+   9. ACTIVE-SECTION NAV INDICATOR (Option 2 red dot)
+   ========================================================================== */
+function initActiveNav() {
+  const links = [...document.querySelectorAll('#primary-nav .nav-link')];
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const byId = Object.fromEntries(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const sections = Object.keys(byId).map(id => document.getElementById(id)).filter(Boolean);
+  const setActive = (id) => links.forEach(a => a.classList.toggle('is-active', a === byId[id]));
+  const io = new IntersectionObserver((entries) => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible) setActive(visible.target.id);
+  }, { rootMargin: '-35% 0px -55% 0px', threshold: [0, 0.25, 0.5] });
+  sections.forEach(s => io.observe(s));
+  links.forEach(a => a.addEventListener('click', () => setActive(a.getAttribute('href').slice(1))));
 }

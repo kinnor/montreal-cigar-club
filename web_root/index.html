@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="css/styles.css?v=20260829b">
+  <link rel="stylesheet" href="css/styles.css?v=20260830a">
   <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
   <script>
     tailwind.config = {
@@ -55,7 +55,7 @@
     "name": "Montreal Cigar Club",
     "alternateName": "Club de Cigare de Montréal",
     "url": "https://montrealcigarclub.ca/",
-    "logo": "https://montrealcigarclub.ca/assets/logo-royal-gold.jpg",
+    "logo": "https://montrealcigarclub.ca/assets/Montreal_Cigar_Club_Logo_Royal_Gold.jpg",
     "address": { "@type": "PostalAddress", "addressLocality": "Montréal", "addressRegion": "QC", "addressCountry": "CA" }
   }
   </script>
@@ -64,9 +64,9 @@
 
   <!-- ===================== AGE GATE ===================== -->
   <div id="age-gate" class="fixed inset-0 z-[100] bg-obsidian flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
-    <div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity" style="background-image: url('assets/hero-obsidian.jpg');"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity" style="background-image: url('assets/Website_Concept_2_Midnight_Obsidian.jpg');"></div>
     <div class="card-luxury relative p-8 sm:p-10 max-w-md w-full text-center border-gold-500/50 shadow-2xl">
-      <img src="assets/logo-royal-gold.jpg" alt="Montreal Cigar Club crest" width="96" height="96" class="w-24 h-24 rounded-full mx-auto border border-gold-500/40 object-cover mb-5">
+      <img src="assets/Montreal_Cigar_Club_Logo_Royal_Gold.jpg" alt="Montreal Cigar Club crest" width="96" height="96" class="w-24 h-24 rounded-full mx-auto border border-gold-500/40 object-cover mb-5">
       <span class="text-gold-400 font-cinzel text-[11px] tracking-[0.3em] uppercase block mb-2" data-i18n="age.kicker">Private Members Society</span>
       <h2 id="age-gate-title" class="font-cinzel text-2xl font-bold text-white" data-i18n="age.title">Are you 18 or older?</h2>
       <p class="font-serif-luxury text-slate-300 text-base mt-3 leading-relaxed" data-i18n="age.body">This website presents tobacco products intended for adults only. Under Quebec law you must be at least 18 years old to enter.</p>
@@ -104,22 +104,21 @@
   <!-- ===================== MAIN NAVIGATION ===================== -->
   <nav class="sticky top-0 z-40 bg-obsidian/85 backdrop-blur-xl border-b border-gold-500/15 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
-      <a href="#" class="flex items-center space-x-3 group" aria-label="Montreal Cigar Club — home">
-        <div class="w-10 h-10 rounded-full border border-gold-500/40 bg-gradient-to-br from-gold-400/20 to-black flex items-center justify-center text-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-          <span class="font-cinzel font-black text-sm tracking-wider">MCC</span>
-        </div>
-        <div class="flex flex-col">
-          <span class="font-cinzel text-lg sm:text-xl font-bold tracking-widest text-gold-gradient group-hover:brightness-125 transition-all">MONTREAL</span>
-          <span class="text-[9px] tracking-[0.3em] uppercase text-slate-400 font-semibold -mt-1">CIGAR CLUB</span>
-        </div>
+      <!-- Option 2 — Horizontal brand lockup: crest + two-line wordmark -->
+      <a href="#" class="brand-lockup flex items-center gap-3 sm:gap-4 group" aria-label="Montreal Cigar Club — home">
+        <img src="assets/Montreal_Cigar_Club_Logo_Royal_Gold.jpg" alt="" width="56" height="56" class="brand-crest w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border border-gold-500/40 shadow-[0_0_18px_rgba(212,175,55,0.25)] group-hover:shadow-[0_0_26px_rgba(212,175,55,0.45)] transition-shadow">
+        <span class="flex flex-col leading-none">
+          <span class="font-cinzel text-xl sm:text-2xl font-bold tracking-[0.12em] text-gold-gradient group-hover:brightness-125 transition-all">MONTREAL</span>
+          <span class="text-[10px] sm:text-[11px] tracking-[0.42em] uppercase text-slate-300 font-medium mt-1">CIGAR CLUB</span>
+        </span>
       </a>
-      <div class="hidden lg:flex items-center space-x-7 font-cinzel text-xs tracking-widest text-slate-300">
-        <a href="#humidor" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.humidor">The Humidor</a>
-        <a href="#pairing" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.pairing">Pairing Engine</a>
-        <a href="#events" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.events">Events</a>
-        <a href="#vault" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.vault">The Vault</a>
-        <a href="#membership" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.membership">Membership</a>
-        <a href="#about" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.about">About</a>
+      <div id="primary-nav" class="hidden lg:flex items-center space-x-8 font-cinzel text-xs tracking-widest text-slate-300">
+        <a href="#humidor" class="nav-link hover:text-gold-400 transition-colors uppercase" data-i18n="nav.humidor">The Humidor</a>
+        <a href="#pairing" class="nav-link hover:text-gold-400 transition-colors uppercase" data-i18n="nav.pairing">Pairing Engine</a>
+        <a href="#events" class="nav-link hover:text-gold-400 transition-colors uppercase" data-i18n="nav.events">Events</a>
+        <a href="#vault" class="nav-link hover:text-gold-400 transition-colors uppercase" data-i18n="nav.vault">The Vault</a>
+        <a href="#membership" class="nav-link hover:text-gold-400 transition-colors uppercase" data-i18n="nav.membership">Membership</a>
+        <a href="#about" class="nav-link hover:text-gold-400 transition-colors uppercase" data-i18n="nav.about">About</a>
       </div>
       <div class="flex items-center space-x-3 sm:space-x-4">
         <button onclick="openModal('modal-apply')" class="btn-gold text-xs px-4 sm:px-5 py-2.5 rounded shadow-lg font-cinzel" data-i18n="nav.cta">Request Access</button>
@@ -142,7 +141,7 @@
 
   <!-- ===================== HERO ===================== -->
   <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-24">
-    <div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity scale-105" style="background-image: url('assets/hero-obsidian.jpg');"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity scale-105" style="background-image: url('assets/Website_Concept_2_Midnight_Obsidian.jpg');"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/70 to-transparent"></div>
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
       <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-gold-500/30 bg-black/60 backdrop-blur-md mb-8 glow-subtle">
@@ -353,7 +352,7 @@
         </div>
         <div class="lg:col-span-5">
           <div class="rounded-xl overflow-hidden border border-gold-500/30 shadow-[0_0_40px_rgba(0,0,0,0.8)] relative group">
-            <img src="assets/event-soiree.jpg" alt="Montreal Cigar Club tasting soirée — private penthouse lounge" width="768" height="1376" loading="lazy" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
+            <img src="assets/Montreal_Cigar_Club_Event_Advertisement.jpg" alt="Montreal Cigar Club tasting soirée — private penthouse lounge" width="768" height="1376" loading="lazy" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700">
             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
           </div>
         </div>
@@ -583,7 +582,7 @@
     </div>
   </div>
 
-  <script src="js/i18n.js?v=20260829b"></script>
-  <script src="js/app.js?v=20260829b"></script>
+  <script src="js/i18n.js?v=20260830a"></script>
+  <script src="js/app.js?v=20260830a"></script>
 </body>
 </html>

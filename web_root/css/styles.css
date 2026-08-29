@@ -168,3 +168,14 @@ body {
 }
 /* Focus rings on gold controls */
 .btn-gold:focus-visible, .btn-outline-gold:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid #f5df95; outline-offset: 2px; }
+
+/* Option 2 navbar — active-section indicator (red dot under the current link) */
+.nav-link { position: relative; padding-bottom: 6px; }
+.nav-link::after {
+  content: ''; position: absolute; left: 50%; bottom: -4px; width: 5px; height: 5px; border-radius: 50%;
+  background: #e11d48; box-shadow: 0 0 8px rgba(225, 29, 72, 0.8);
+  transform: translateX(-50%) scale(0); transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link.is-active { color: #f5df95; }
+.nav-link.is-active::after { transform: translateX(-50%) scale(1); }
+.brand-crest { background: #000; }
