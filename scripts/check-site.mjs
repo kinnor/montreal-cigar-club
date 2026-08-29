@@ -29,7 +29,8 @@ for (const [page, h] of Object.entries(html)) {
     if (/^(https?:|#|mailto:|javascript:|data:|tel:)/.test(r) || r === '') continue;
     const clean = r.replace(/^\//, '').split(/[?#]/)[0];
     if (clean === '') continue;
-    if (!existsSync(join(root, clean))) problems.push(`${page}: missing file ${r}`);
+    // Cloudflare Pages serves /privacy for privacy.html (clean URLs) — accept either form
+    if (!existsSync(join(root, clean)) && !existsSync(join(root, clean + '.html'))) problems.push(`${page}: missing file ${r}`);
   }
 }
 

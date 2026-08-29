@@ -2,6 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url><loc>https://montrealcigarclub.ca/</loc><lastmod>2026-08-29</lastmod><changefreq>monthly</changefreq><priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-CA" href="https://montrealcigarclub.ca/"/><xhtml:link rel="alternate" hreflang="fr-CA" href="https://montrealcigarclub.ca/?lang=fr"/></url>
-  <url><loc>https://montrealcigarclub.ca/privacy.html</loc><lastmod>2026-08-29</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://montrealcigarclub.ca/terms.html</loc><lastmod>2026-08-29</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://montrealcigarclub.ca/privacy</loc><lastmod>2026-08-29</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://montrealcigarclub.ca/terms</loc><lastmod>2026-08-29</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
