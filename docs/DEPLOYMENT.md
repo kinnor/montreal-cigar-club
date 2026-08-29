@@ -96,3 +96,34 @@ Zone **montrealcigarclub.ca → Email → Email Routing**: enable, add destinati
 ## Rollback
 
 `Workers & Pages → montreal-cigar-club → Deployments → ⋯ → Rollback to this deployment`.
+
+## 7. Forms, storage and the admin endpoint
+
+| Piece | Where |
+|-------|-------|
+| Membership application → `POST /api/apply` | `functions/api/apply.js` |
+| Event RSVP → `POST /api/rsvp` | `functions/api/rsvp.js` |
+| Validation, honeypot, per-IP rate limit (5/h), storage, optional email | `functions/_lib.js` |
+| Storage | KV namespace `MCC_SUBMISSIONS` (`86439abd…6344`), bound in `wrangler.toml` |
+| Read submissions | `GET /api/admin/submissions?kind=apply|rsvp` with `Authorization: Bearer <ADMIN_TOKEN>` |
+
+`ADMIN_TOKEN` is a Pages secret (set 2026-08-29; value in `secrets/mcc-admin-token.txt`). Rotate with:
+`wrangler pages secret put ADMIN_TOKEN --project-name=montreal-cigar-club`
+
+Fetch submissions from PowerShell (token read from the file, never echoed):
+```powershell
+$t = Get-Content secrets/mcc-admin-token.txt -Raw
+Invoke-RestMethod -Headers @{ Authorization = "Bearer $t" } "https://montrealcigarclub.ca/api/admin/submissions?kind=apply" | ConvertTo-Json -Depth 5
+```
+
+**Email copies (optional):** enable Email Routing on `montrealcigarclub.ca`, verify a destination address, then
+uncomment the `[[send_email]]` block and `MAIL_TO` in `wrangler.toml` and redeploy. Without it, submissions are
+still stored in KV and readable via the admin endpoint.
+
+## 8. Site features (2026-08-29 rebuild)
+
+- Age gate (18+, Quebec) remembered per device for 30 days (`localStorage`)
+- Full FR/EN: `js/i18n.js` dictionary, `data-i18n` attributes, `?lang=fr` deep link, preference persisted
+- Sections: Humidor, Pairing Engine (bilingual notes), Events 2026 with RSVP, The Vault, Membership, About & Gallery
+- Legal: `privacy.html` (Law 25 / PIPEDA) and `terms.html`, bilingual
+- `robots.txt`, `sitemap.xml`, JSON-LD Organization, hreflang

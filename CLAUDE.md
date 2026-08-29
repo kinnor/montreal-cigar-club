@@ -7,10 +7,9 @@ Private members' cigar club in Montreal, Quebec (*Club de Cigare de Montréal*).
 | Path | Purpose |
 |------|---------|
 | `README.md` | Master project record — brand assets, domain strategy, cigar portfolio, sourcing/tax research, audio setup |
-| `index.html` | The site — single page: concierge bar (telemetry, audio, FR/EN, Members), hero, vitola dossier cards, pairing harmonizer, RSVP, membership tiers, vault login modal. **Saved as UTF-16 — should be converted to UTF-8 before deploy.** |
-| `styles.css` | Custom design system on top of Tailwind: Midnight Obsidian + 24K gold tokens, Cinzel / Cormorant Garamond / Plus Jakarta Sans |
-| `app.js` | Pairing engine (cigar + spirit + jazz), humidor telemetry, vinyl audio player, FR/EN toggle, modals |
-| `assets/` | Web-optimized images (currently empty — resize the root JPGs into here, never link the 1 MB originals) |
+| `web_root/` | The site (canonical). `index.html` + `privacy.html` + `terms.html`, `css/`, `js/app.js` + `js/i18n.js` (FR/EN dictionary), `assets/` (optimised), `_headers`, `_redirects`, `robots.txt`, `sitemap.xml` |
+| `functions/` | Cloudflare Pages Functions: `/api/apply`, `/api/rsvp` (KV `MCC_SUBMISSIONS`), `/api/admin/submissions` (Bearer `ADMIN_TOKEN`) |
+| `workers/redirect/` | Worker: mtlcigarclub.ca/.com → montrealcigarclub.ca 301 |
 | `*.jpg` (root) | High-res logos (Royal Gold, Emerald Seal), event flyer, two website concept mockups |
 | `secrets/` | API keys and tokens — **never read, print, or commit** (deny rules in `.claude/settings.local.json`, ignored in `.gitignore`). Consumed only via `scripts/with-secrets.ps1` |
 | `scripts/with-secrets.ps1` | Runs a command with `CLOUDFLARE_API_TOKEN` / `GH_TOKEN` loaded from `secrets/` (values never displayed) |
@@ -20,12 +19,12 @@ Private members' cigar club in Montreal, Quebec (*Club de Cigare de Montréal*).
 
 - Static site, no bundler. Tailwind via play CDN (`cdn.tailwindcss.com`, config inline in `index.html`), Lucide icons via CDN, Google Fonts.
 - Chosen visual concept: **Midnight Obsidian** (`Website_Concept_2_Midnight_Obsidian.jpg`).
-- i18n: every user-facing string carries `data-en` / `data-fr`; `initLanguageToggle()` swaps them. New text must include both.
+- i18n: every user-facing string is a key in `web_root/js/i18n.js` (both `en` and `fr`) referenced by `data-i18n` / `data-i18n-html`; `scripts/check-site.mjs` fails if a key is missing in either language. Long legal text uses `data-lang="en|fr"` blocks instead.
 - Domains (purchased 2026-08-29, Cloudflare Registrar): **`montrealcigarclub.ca`** (primary), **`mtlcigarclub.ca`** and **`mtlcigarclub.com`** (both 301 redirect to primary; .com added later on 2026-08-29). No `.com` owned. Hosting: Cloudflare Pages; email via Cloudflare Email Routing (`concierge@`, `admissions@`, `vault@`). Preview locally with `python -m http.server 8080`.
 - Cloudflare and GitHub tokens live in `secrets/` (user-authorised for tool access 2026-08-29). **Never read or print them.** Run tools through `scripts/with-secrets.ps1`, which loads them as env vars for the child process only:
   `powershell -ExecutionPolicy Bypass -File scripts/with-secrets.ps1 npx wrangler whoami`
   GitHub: `gh` is already logged in via keyring (account `kinnor`) — use it directly. The token in `secrets/rossen-kinov-git-hub-key.txt` was rejected by GitHub on 2026-08-29; pass `-GitHub` to the helper only after the user refreshes it.
-- No git repo yet. If one is initialised, `secrets/` must stay ignored.
+- Git: https://github.com/kinnor/montreal-cigar-club (`main`). `secrets/` and root-level legacy copies are ignored. Run `node scripts/check-site.mjs` before every commit/deploy.
 
 ## Skills
 

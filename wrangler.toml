@@ -10,3 +10,16 @@ pages_build_output_dir = "web_root"
 #   montrealcigarclub.ca   (canonical)
 #   www.montrealcigarclub.ca (optional, redirect to apex via Redirect Rule)
 # The mtlcigarclub.ca -> montrealcigarclub.ca 301 lives in workers/redirect/.
+
+# KV store for membership applications and RSVPs (functions/api/*)
+[[kv_namespaces]]
+binding = "MCC_SUBMISSIONS"
+id = "86439abda36f425dbd499949866a6344"
+
+# Optional email copies of submissions: enable Email Routing on montrealcigarclub.ca, then
+# uncomment and set MAIL_TO (a verified destination address).
+# [[send_email]]
+# name = "EMAIL"
+# [vars]
+# MAIL_TO = "you@example.com"
+# MAIL_FROM = "concierge@montrealcigarclub.ca"

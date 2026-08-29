@@ -6,6 +6,8 @@
   <title>Montreal Cigar Club — The Apex of Canadian Cigar Excellence</title>
   <meta name="description" content="Exclusive private members cigar society in Montreal. Curated vitolas, bespoke pairings, rare allocations, and private penthouse tasting salons.">
   <link rel="canonical" href="https://montrealcigarclub.ca/">
+  <link rel="alternate" hreflang="en-CA" href="https://montrealcigarclub.ca/">
+  <link rel="alternate" hreflang="fr-CA" href="https://montrealcigarclub.ca/?lang=fr">
   <meta name="theme-color" content="#07080a">
   <meta name="robots" content="index, follow">
   <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -46,36 +48,63 @@
       }
     }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Montreal Cigar Club",
+    "alternateName": "Club de Cigare de Montréal",
+    "url": "https://montrealcigarclub.ca/",
+    "logo": "https://montrealcigarclub.ca/assets/logo-royal-gold.jpg",
+    "address": { "@type": "PostalAddress", "addressLocality": "Montréal", "addressRegion": "QC", "addressCountry": "CA" }
+  }
+  </script>
 </head>
 <body class="bg-obsidian text-slate-200 antialiased selection:bg-gold-500 selection:text-obsidian">
 
-  <!-- TOP HEADER & CONCIERGE BAR -->
+  <!-- ===================== AGE GATE ===================== -->
+  <div id="age-gate" class="fixed inset-0 z-[100] bg-obsidian flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="age-gate-title">
+    <div class="absolute inset-0 bg-cover bg-center opacity-20 mix-blend-luminosity" style="background-image: url('assets/hero-obsidian.jpg');"></div>
+    <div class="card-luxury relative p-8 sm:p-10 max-w-md w-full text-center border-gold-500/50 shadow-2xl">
+      <img src="assets/logo-royal-gold.jpg" alt="Montreal Cigar Club crest" width="96" height="96" class="w-24 h-24 rounded-full mx-auto border border-gold-500/40 object-cover mb-5">
+      <span class="text-gold-400 font-cinzel text-[11px] tracking-[0.3em] uppercase block mb-2" data-i18n="age.kicker">Private Members Society</span>
+      <h2 id="age-gate-title" class="font-cinzel text-2xl font-bold text-white" data-i18n="age.title">Are you 18 or older?</h2>
+      <p class="font-serif-luxury text-slate-300 text-base mt-3 leading-relaxed" data-i18n="age.body">This website presents tobacco products intended for adults only. Under Quebec law you must be at least 18 years old to enter.</p>
+      <div class="mt-6 flex flex-col gap-3">
+        <button id="age-yes" class="btn-gold w-full py-3 rounded font-cinzel text-xs font-bold tracking-widest" data-i18n="age.yes">Yes — I am 18 or older</button>
+        <a id="age-no" href="https://www.quebec.ca/" class="btn-outline-gold w-full py-3 rounded font-cinzel text-xs font-semibold tracking-widest block" data-i18n="age.no">No — take me away</a>
+      </div>
+      <p class="text-[11px] text-slate-500 mt-5" data-i18n="age.note">Your answer is stored on this device only.</p>
+    </div>
+  </div>
+
+  <!-- ===================== TOP CONCIERGE BAR ===================== -->
   <div class="bg-black/90 border-b border-gold-500/20 text-xs py-2 px-4 sm:px-8 flex justify-between items-center z-50 relative backdrop-blur-md">
     <div class="flex items-center space-x-3 text-slate-400">
       <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-950/80 text-emerald-400 border border-emerald-500/30">
         <span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        VAULT OPTIMAL
+        <span data-i18n="bar.vault">VAULT OPTIMAL</span>
       </span>
-      <span class="hidden sm:inline font-mono">Vault 1: <strong id="telemetry-temp" class="text-gold-400">19.5°C</strong> · <strong id="telemetry-rh" class="text-gold-400">69.2% RH</strong></span>
+      <span class="hidden sm:inline font-mono"><span data-i18n="bar.vault1">Vault 1:</span> <strong id="telemetry-temp" class="text-gold-400">19.5°C</strong> · <strong id="telemetry-rh" class="text-gold-400">69.2% RH</strong></span>
     </div>
     <div class="flex items-center space-x-4 sm:space-x-6">
-      <button id="audio-toggle-btn" class="flex items-center space-x-2 text-slate-300 hover:text-gold-400 transition-colors cursor-pointer py-0.5 px-2 rounded border border-slate-800 hover:border-gold-500/40">
-        <div class="flex items-end space-x-0.5 h-3">
+      <button id="audio-toggle-btn" class="flex items-center space-x-2 text-slate-300 hover:text-gold-400 transition-colors cursor-pointer py-0.5 px-2 rounded border border-slate-800 hover:border-gold-500/40" aria-pressed="false">
+        <div class="flex items-end space-x-0.5 h-3" aria-hidden="true">
           <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
         </div>
-        <span id="audio-toggle-text" class="font-medium tracking-wide">Audio: OFF</span>
+        <span id="audio-toggle-text" class="font-medium tracking-wide" data-i18n="bar.audioOff">Audio: OFF</span>
       </button>
-      <button id="lang-toggle-btn" class="text-gold-400 hover:text-gold-300 font-semibold tracking-wider transition-colors">FR / EN</button>
+      <button id="lang-toggle-btn" class="text-gold-400 hover:text-gold-300 font-semibold tracking-wider transition-colors" aria-label="Changer de langue / Switch language">FR</button>
       <button onclick="openModal('modal-login')" class="text-slate-300 hover:text-gold-400 flex items-center space-x-1 font-medium transition-colors">
-        <i data-lucide="lock" class="w-3.5 h-3.5 text-gold-500"></i><span>Members</span>
+        <i data-lucide="lock" class="w-3.5 h-3.5 text-gold-500"></i><span data-i18n="bar.members">Members</span>
       </button>
     </div>
   </div>
 
-  <!-- MAIN NAVIGATION -->
+  <!-- ===================== MAIN NAVIGATION ===================== -->
   <nav class="sticky top-0 z-40 bg-obsidian/85 backdrop-blur-xl border-b border-gold-500/15 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
-      <a href="#" class="flex items-center space-x-3 group">
+      <a href="#" class="flex items-center space-x-3 group" aria-label="Montreal Cigar Club — home">
         <div class="w-10 h-10 rounded-full border border-gold-500/40 bg-gradient-to-br from-gold-400/20 to-black flex items-center justify-center text-gold-400 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
           <span class="font-cinzel font-black text-sm tracking-wider">MCC</span>
         </div>
@@ -84,16 +113,16 @@
           <span class="text-[9px] tracking-[0.3em] uppercase text-slate-400 font-semibold -mt-1">CIGAR CLUB</span>
         </div>
       </a>
-      <div class="hidden lg:flex items-center space-x-8 font-cinzel text-xs tracking-widest text-slate-300">
-        <a href="#humidor" class="hover:text-gold-400 transition-colors uppercase" data-en="The Humidor" data-fr="Le humidor">The Humidor</a>
-        <a href="#pairing" class="hover:text-gold-400 transition-colors uppercase" data-en="Pairing Engine" data-fr="Moteur d’accords">Pairing Engine</a>
-        <a href="#soirees" class="hover:text-gold-400 transition-colors uppercase" data-en="Salons &amp; Events" data-fr="Salons et événements">Salons &amp; Events</a>
-        <a href="#membership" class="hover:text-gold-400 transition-colors uppercase" data-en="Membership" data-fr="Adhésion">Membership</a>
+      <div class="hidden lg:flex items-center space-x-7 font-cinzel text-xs tracking-widest text-slate-300">
+        <a href="#humidor" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.humidor">The Humidor</a>
+        <a href="#pairing" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.pairing">Pairing Engine</a>
+        <a href="#events" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.events">Events</a>
+        <a href="#vault" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.vault">The Vault</a>
+        <a href="#membership" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.membership">Membership</a>
+        <a href="#about" class="hover:text-gold-400 transition-colors uppercase" data-i18n="nav.about">About</a>
       </div>
       <div class="flex items-center space-x-3 sm:space-x-4">
-        <button onclick="openModal('modal-apply')" class="btn-gold text-xs px-4 sm:px-5 py-2.5 rounded shadow-lg font-cinzel" data-en="Request Access" data-fr="Demander l’accès">
-          Request Access
-        </button>
+        <button onclick="openModal('modal-apply')" class="btn-gold text-xs px-4 sm:px-5 py-2.5 rounded shadow-lg font-cinzel" data-i18n="nav.cta">Request Access</button>
         <button id="mobile-menu-btn" type="button" class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded border border-gold-500/30 text-gold-400 hover:border-gold-500/70 transition-colors" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu">
           <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
@@ -101,164 +130,129 @@
     </div>
     <div id="mobile-menu" class="lg:hidden hidden border-t border-gold-500/15 bg-obsidian/95 backdrop-blur-xl">
       <div class="px-4 sm:px-6 py-4 flex flex-col font-cinzel text-sm tracking-widest text-slate-200 uppercase">
-        <a href="#humidor" class="py-3 border-b border-gold-500/10 hover:text-gold-400" data-en="The Humidor" data-fr="Le humidor">The Humidor</a>
-        <a href="#pairing" class="py-3 border-b border-gold-500/10 hover:text-gold-400" data-en="Pairing Engine" data-fr="Moteur d’accords">Pairing Engine</a>
-        <a href="#soirees" class="py-3 border-b border-gold-500/10 hover:text-gold-400" data-en="Salons &amp; Events" data-fr="Salons et événements">Salons &amp; Events</a>
-        <a href="#membership" class="py-3 hover:text-gold-400" data-en="Membership" data-fr="Adhésion">Membership</a>
+        <a href="#humidor" class="py-3 border-b border-gold-500/10 hover:text-gold-400" data-i18n="nav.humidor">The Humidor</a>
+        <a href="#pairing" class="py-3 border-b border-gold-500/10 hover:text-gold-400" data-i18n="nav.pairing">Pairing Engine</a>
+        <a href="#events" class="py-3 border-b border-gold-500/10 hover:text-gold-400" data-i18n="nav.events">Events</a>
+        <a href="#vault" class="py-3 border-b border-gold-500/10 hover:text-gold-400" data-i18n="nav.vault">The Vault</a>
+        <a href="#membership" class="py-3 border-b border-gold-500/10 hover:text-gold-400" data-i18n="nav.membership">Membership</a>
+        <a href="#about" class="py-3 hover:text-gold-400" data-i18n="nav.about">About</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- ===================== HERO ===================== -->
   <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-24">
-    <div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity scale-105 transition-transform duration-1000" style="background-image: url('assets/hero-obsidian.jpg');"></div>
+    <div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-luminosity scale-105" style="background-image: url('assets/hero-obsidian.jpg');"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/70 to-transparent"></div>
-    <div class="absolute inset-0 bg-radial-at-c from-gold-500/10 via-transparent to-transparent"></div>
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
       <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full border border-gold-500/30 bg-black/60 backdrop-blur-md mb-8 glow-subtle">
         <i data-lucide="crown" class="w-3.5 h-3.5 text-gold-400"></i>
-        <span class="text-[11px] font-cinzel tracking-[0.25em] text-gold-300 uppercase">Private Members Society · Montreal</span>
+        <span class="text-[11px] font-cinzel tracking-[0.25em] text-gold-300 uppercase" data-i18n="hero.kicker">Private Members Society · Montreal</span>
       </div>
-      <h1 class="font-cinzel text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-wide text-white leading-tight uppercase mb-6">
-        The Apex of Canadian <br><span class="text-gold-gradient">Cigar Excellence</span>
-      </h1>
-      <p class="font-serif-luxury italic text-xl sm:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal">
-        Exclusive Access · Curator Selection · Private Humidor Allocations
-      </p>
+      <h1 class="font-cinzel text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-wide text-white leading-tight uppercase mb-6" data-i18n-html="hero.title">The Apex of Canadian <br><span class="text-gold-gradient">Cigar Excellence</span></h1>
+      <p class="font-serif-luxury italic text-xl sm:text-2xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-normal" data-i18n="hero.sub">Exclusive Access · Curator Selection · Private Humidor Allocations</p>
       <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-        <a href="#humidor" class="btn-gold px-8 py-3.5 rounded font-cinzel text-xs font-bold tracking-widest w-full sm:w-auto">
-          Explore The Humidor
-        </a>
-        <button onclick="openModal('modal-apply')" class="btn-outline-gold px-8 py-3.5 rounded font-cinzel text-xs font-bold tracking-widest w-full sm:w-auto">
-          Apply For Allocation
-        </button>
+        <a href="#humidor" class="btn-gold px-8 py-3.5 rounded font-cinzel text-xs font-bold tracking-widest w-full sm:w-auto" data-i18n="hero.cta1">Explore The Humidor</a>
+        <button onclick="openModal('modal-apply')" class="btn-outline-gold px-8 py-3.5 rounded font-cinzel text-xs font-bold tracking-widest w-full sm:w-auto" data-i18n="hero.cta2">Apply For Allocation</button>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-20 pt-10 border-t border-gold-500/15 max-w-4xl mx-auto">
-        <div class="text-center"><div class="font-cinzel text-2xl font-bold text-gold-400">96+</div><div class="text-xs text-slate-400 uppercase tracking-widest mt-1">Point Average</div></div>
-        <div class="text-center"><div class="font-cinzel text-2xl font-bold text-gold-400">100%</div><div class="text-xs text-slate-400 uppercase tracking-widest mt-1">Aged Spanish Cedar</div></div>
-        <div class="text-center"><div class="font-cinzel text-2xl font-bold text-gold-400">50</div><div class="text-xs text-slate-400 uppercase tracking-widest mt-1">Founder Lockers</div></div>
-        <div class="text-center"><div class="font-cinzel text-2xl font-bold text-gold-400">24K</div><div class="text-xs text-slate-400 uppercase tracking-widest mt-1">Bespoke Tastings</div></div>
+        <div class="text-center"><div class="font-cinzel text-2xl font-bold text-gold-400">96+</div><div class="text-xs text-slate-400 uppercase tracking-widest mt-1" data-i18n="hero.stat1">Point Average</div></div>
+        <div class="text-center"><div class="font-cinzel text-2xl font-bold text-gold-400">100%</div><div class="text-xs text-slate-400 uppercase tracking-widest mt-1" data-i18n="hero.stat2">Aged Spanish Cedar</div></div>
+        <div class="text-center"><div class="font-cinzel text-2xl font-bold text-gold-400">50</div><div class="text-xs text-slate-400 uppercase tracking-widest mt-1" data-i18n="hero.stat3">Founder Lockers</div></div>
+        <div class="text-center"><div class="font-cinzel text-2xl font-bold text-gold-400">24K</div><div class="text-xs text-slate-400 uppercase tracking-widest mt-1" data-i18n="hero.stat4">Bespoke Tastings</div></div>
       </div>
     </div>
   </section>
-  <!-- LE CABINET / THE CURATED HUMIDOR -->
+
+  <!-- ===================== THE HUMIDOR ===================== -->
   <section id="humidor" class="py-24 bg-gradient-to-b from-obsidian via-[#0a0c10] to-obsidian border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block mb-2">Curator's Reserve</span>
-        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider">
-          The <span class="text-gold-gradient">Masterpiece</span> Cabinet
-        </h2>
-        <p class="font-serif-luxury italic text-lg text-slate-400 mt-3">
-          Hand-selected vitolas aged to perfection under continuous climate telemetry.
-        </p>
+        <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block mb-2" data-i18n="humidor.kicker">Curator's Reserve</span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider" data-i18n-html="humidor.title">The <span class="text-gold-gradient">Masterpiece</span> Cabinet</h2>
+        <p class="font-serif-luxury italic text-lg text-slate-400 mt-3" data-i18n="humidor.sub">Hand-selected vitolas aged to perfection under continuous climate telemetry.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Vitola 1: Padrón 1964 -->
-        <div class="card-luxury p-8 flex flex-col justify-between group relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-gold-500/10 text-gold-400 font-mono text-[10px] font-bold px-3 py-1 border-b border-l border-gold-500/20 rounded-bl">
-            94 PTS · CIGAR AFICIONADO
-          </div>
+        <!-- Padrón -->
+        <article class="card-luxury p-8 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-gold-500/10 text-gold-400 font-mono text-[10px] font-bold px-3 py-1 border-b border-l border-gold-500/20 rounded-bl">94 PTS · CIGAR AFICIONADO</div>
           <div>
-            <span class="text-amber-500 text-xs font-cinzel tracking-widest uppercase font-semibold">Nicaraguan Puro</span>
+            <span class="text-amber-500 text-xs font-cinzel tracking-widest uppercase font-semibold" data-i18n="cigar.padron.kicker">Nicaraguan Puro</span>
             <h3 class="font-cinzel text-xl font-bold text-white mt-1 group-hover:text-gold-300 transition-colors">Padrón 1964 Anniversary</h3>
-            <span class="text-slate-400 text-xs font-mono">Principe & Exclusivo Maduro</span>
-            <p class="font-serif-luxury text-slate-300 text-base leading-relaxed mt-4">
-              Aged for four full years. Delivers signature waves of bittersweet dark cocoa, roasted espresso bean, black pepper, and sweet damp earth.
-            </p>
+            <span class="text-slate-400 text-xs font-mono">Principe &amp; Exclusivo Maduro</span>
+            <p class="font-serif-luxury text-slate-300 text-base leading-relaxed mt-4" data-i18n="cigar.padron.desc">Aged for four full years. Delivers signature waves of bittersweet dark cocoa, roasted espresso bean, black pepper, and sweet damp earth.</p>
             <div class="mt-6 space-y-2 text-xs">
-              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span>Wrapper:</span><span class="text-slate-200">Nicaraguan Sun Grown Maduro</span></div>
-              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span>Format:</span><span class="text-slate-200">Box-Pressed Robusto / Petit Corona</span></div>
-              <div class="flex justify-between text-slate-400"><span>Body:</span><span class="text-gold-400 font-semibold">Medium-Full to Full</span></div>
+              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span data-i18n="cigar.wrapper">Wrapper:</span><span class="text-slate-200" data-i18n="cigar.padron.wrapper">Nicaraguan Sun Grown Maduro</span></div>
+              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span data-i18n="cigar.format">Format:</span><span class="text-slate-200" data-i18n="cigar.padron.format">Box-Pressed Robusto / Petit Corona</span></div>
+              <div class="flex justify-between text-slate-400"><span data-i18n="cigar.body">Body:</span><span class="text-gold-400 font-semibold" data-i18n="cigar.padron.body">Medium-Full to Full</span></div>
             </div>
           </div>
-          <button onclick="alert('Padrón 1964 Dossier:\n- Origin: Estelí, Nicaragua\n- Aging: 4 Years Minimum\n- Allocation: Available in Private Vault #4')"
-            class="mt-8 btn-outline-gold text-xs py-2.5 px-4 rounded w-full font-cinzel font-semibold tracking-wider">
-            View Tasting Dossier
-          </button>
-        </div>
-        <!-- Vitola 2: E.P. Carrillo Encore -->
-        <div class="card-luxury p-8 flex flex-col justify-between group relative overflow-hidden border-gold-500/40 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
-          <div class="absolute top-0 right-0 bg-gold-500 text-black font-mono text-[10px] font-extrabold px-3 py-1 rounded-bl">
-            #1 CIGAR OF THE YEAR · 96 PTS
-          </div>
+          <button data-dossier="padron" class="mt-8 btn-outline-gold text-xs py-2.5 px-4 rounded w-full font-cinzel font-semibold tracking-wider" data-i18n="cigar.dossier">View Tasting Dossier</button>
+        </article>
+        <!-- E.P. Carrillo -->
+        <article class="card-luxury p-8 flex flex-col justify-between group relative overflow-hidden border-gold-500/40 shadow-[0_0_30px_rgba(212,175,55,0.1)]">
+          <div class="absolute top-0 right-0 bg-gold-500 text-black font-mono text-[10px] font-extrabold px-3 py-1 rounded-bl" data-i18n="cigar.epc.badge">#1 CIGAR OF THE YEAR · 96 PTS</div>
           <div>
-            <span class="text-amber-500 text-xs font-cinzel tracking-widest uppercase font-semibold">Tercio-Aged Wrapper</span>
+            <span class="text-amber-500 text-xs font-cinzel tracking-widest uppercase font-semibold" data-i18n="cigar.epc.kicker">Tercio-Aged Wrapper</span>
             <h3 class="font-cinzel text-xl font-bold text-gold-gradient mt-1">E.P. Carrillo Encore</h3>
-            <span class="text-slate-400 text-xs font-mono">Majestic & Celestial</span>
-            <p class="font-serif-luxury text-slate-300 text-base leading-relaxed mt-4">
-              Wrapper leaves aged in palm-bark tercios for two years. A masterclass of aristocratic finesse, sweet cedar, baking spices, caramel, and citrus zest.
-            </p>
+            <span class="text-slate-400 text-xs font-mono">Majestic &amp; Celestial</span>
+            <p class="font-serif-luxury text-slate-300 text-base leading-relaxed mt-4" data-i18n="cigar.epc.desc">Wrapper leaves aged in palm-bark tercios for two years. A masterclass of aristocratic finesse, sweet cedar, baking spices, caramel, and citrus zest.</p>
             <div class="mt-6 space-y-2 text-xs">
-              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span>Wrapper:</span><span class="text-slate-200">Nicaraguan Tercios Aged</span></div>
-              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span>Format:</span><span class="text-slate-200">Soft Box-Pressed Toro / Robusto</span></div>
-              <div class="flex justify-between text-slate-400"><span>Body:</span><span class="text-gold-400 font-semibold">Medium to Medium-Full</span></div>
+              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span data-i18n="cigar.wrapper">Wrapper:</span><span class="text-slate-200" data-i18n="cigar.epc.wrapper">Nicaraguan Tercios Aged</span></div>
+              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span data-i18n="cigar.format">Format:</span><span class="text-slate-200" data-i18n="cigar.epc.format">Soft Box-Pressed Toro / Robusto</span></div>
+              <div class="flex justify-between text-slate-400"><span data-i18n="cigar.body">Body:</span><span class="text-gold-400 font-semibold" data-i18n="cigar.epc.body">Medium to Medium-Full</span></div>
             </div>
           </div>
-          <button onclick="alert('E.P. Carrillo Encore Dossier:\n- 2018 #1 Cigar of the Year (96 Points)\n- Tercios Aged Fermentation\n- Allocation: Curators Reserve')"
-            class="mt-8 btn-gold text-xs py-2.5 px-4 rounded w-full font-cinzel font-bold tracking-wider">
-            View Tasting Dossier
-          </button>
-        </div>
-        <!-- Vitola 3: My Father Le Bijou -->
-        <div class="card-luxury p-8 flex flex-col justify-between group relative overflow-hidden">
-          <div class="absolute top-0 right-0 bg-gold-500/10 text-gold-400 font-mono text-[10px] font-bold px-3 py-1 border-b border-l border-gold-500/20 rounded-bl">
-            #1 CIGAR OF THE YEAR · 97 PTS
-          </div>
+          <button data-dossier="epc" class="mt-8 btn-gold text-xs py-2.5 px-4 rounded w-full font-cinzel font-bold tracking-wider" data-i18n="cigar.dossier">View Tasting Dossier</button>
+        </article>
+        <!-- My Father -->
+        <article class="card-luxury p-8 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-gold-500/10 text-gold-400 font-mono text-[10px] font-bold px-3 py-1 border-b border-l border-gold-500/20 rounded-bl" data-i18n="cigar.myfather.badge">#1 CIGAR OF THE YEAR · 97 PTS</div>
           <div>
-            <span class="text-amber-500 text-xs font-cinzel tracking-widest uppercase font-semibold">Nicaraguan Oscuro</span>
+            <span class="text-amber-500 text-xs font-cinzel tracking-widest uppercase font-semibold" data-i18n="cigar.myfather.kicker">Nicaraguan Oscuro</span>
             <h3 class="font-cinzel text-xl font-bold text-white mt-1 group-hover:text-gold-300 transition-colors">My Father Le Bijou 1922</h3>
             <span class="text-slate-400 text-xs font-mono">Torpedo Box-Pressed</span>
-            <p class="font-serif-luxury text-slate-300 text-base leading-relaxed mt-4">
-              Created in tribute to Don Pepin Garcia's father. Features a jet-black Oscuro leaf enveloping full-bodied notes of cracked black pepper, dark raisins, and espresso.
-            </p>
+            <p class="font-serif-luxury text-slate-300 text-base leading-relaxed mt-4" data-i18n="cigar.myfather.desc">Created in tribute to Don Pepín García's father. A jet-black Oscuro leaf enveloping full-bodied notes of cracked black pepper, dark raisins, and espresso.</p>
             <div class="mt-6 space-y-2 text-xs">
-              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span>Wrapper:</span><span class="text-slate-200">Habano Oscuro (Nicaragua)</span></div>
-              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span>Format:</span><span class="text-slate-200">Torpedo (6 1/8" x 52)</span></div>
-              <div class="flex justify-between text-slate-400"><span>Body:</span><span class="text-gold-400 font-semibold">Full & Decadent</span></div>
+              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span data-i18n="cigar.wrapper">Wrapper:</span><span class="text-slate-200" data-i18n="cigar.myfather.wrapper">Habano Oscuro (Nicaragua)</span></div>
+              <div class="flex justify-between text-slate-400 border-b border-slate-800 pb-1"><span data-i18n="cigar.format">Format:</span><span class="text-slate-200">Torpedo (6 1/8" × 52)</span></div>
+              <div class="flex justify-between text-slate-400"><span data-i18n="cigar.body">Body:</span><span class="text-gold-400 font-semibold" data-i18n="cigar.myfather.body">Full &amp; Decadent</span></div>
             </div>
           </div>
-          <button onclick="alert('My Father Le Bijou 1922 Dossier:\n- 2015 #1 Cigar of the Year (97 Points)\n- Hand-rolled in Estelí, Nicaragua\n- Allocation: Active Member Vault')"
-            class="mt-8 btn-outline-gold text-xs py-2.5 px-4 rounded w-full font-cinzel font-semibold tracking-wider">
-            View Tasting Dossier
-          </button>
-        </div>
+          <button data-dossier="myfather" class="mt-8 btn-outline-gold text-xs py-2.5 px-4 rounded w-full font-cinzel font-semibold tracking-wider" data-i18n="cigar.dossier">View Tasting Dossier</button>
+        </article>
       </div>
     </div>
   </section>
-  <!-- SIGNATURE INTERACTIVE PAIRING ENGINE -->
+
+  <!-- ===================== PAIRING ENGINE ===================== -->
   <section id="pairing" class="py-24 bg-black relative overflow-hidden border-t border-gold-500/15">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-3xl mx-auto mb-12">
-        <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block mb-2">Interactive Harmonizer</span>
-        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider">
-          The <span class="text-amber-gradient">Pairing Selector</span>
-        </h2>
-        <p class="font-serif-luxury italic text-lg text-slate-400 mt-2">
-          Select your vitola, rare spirit, and vintage jazz soundtrack to calculate aromatic harmony.
-        </p>
+        <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block mb-2" data-i18n="pairing.kicker">Interactive Harmonizer</span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider" data-i18n-html="pairing.title">The <span class="text-amber-gradient">Pairing Selector</span></h2>
+        <p class="font-serif-luxury italic text-lg text-slate-400 mt-2" data-i18n="pairing.sub">Select your vitola, rare spirit, and vintage jazz soundtrack to compose an aromatic harmony.</p>
       </div>
-      <!-- Controls -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div class="bg-cardbg p-5 rounded-lg border border-gold-500/20">
-          <label class="block text-xs font-cinzel tracking-widest text-gold-400 uppercase mb-2">1. Select Vitola</label>
-          <select id="select-cigar" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-sm text-slate-200 focus:border-gold-500 focus:outline-none">
+          <label for="select-cigar" class="block text-xs font-cinzel tracking-widest text-gold-400 uppercase mb-2" data-i18n="pairing.l1">1. Select Vitola</label>
+          <select id="select-cigar" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-sm text-slate-200 focus:border-gold-500 focus:outline-none">
             <option value="padron">Padrón 1964 Anniversary (Maduro)</option>
             <option value="epc" selected>E.P. Carrillo Encore (Majestic)</option>
             <option value="myfather">My Father Le Bijou 1922 (Torpedo)</option>
           </select>
         </div>
         <div class="bg-cardbg p-5 rounded-lg border border-gold-500/20">
-          <label class="block text-xs font-cinzel tracking-widest text-gold-400 uppercase mb-2">2. Select Spirit</label>
-          <select id="select-spirit" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-sm text-slate-200 focus:border-gold-500 focus:outline-none">
+          <label for="select-spirit" class="block text-xs font-cinzel tracking-widest text-gold-400 uppercase mb-2" data-i18n="pairing.l2">2. Select Spirit</label>
+          <select id="select-spirit" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-sm text-slate-200 focus:border-gold-500 focus:outline-none">
             <option value="remy" selected>Rémy Martin XO Cognac</option>
-            <option value="diplomatico">Diplomático Reserva Exclusiva Rum</option>
-            <option value="lagavulin">Lagavulin 16 Year (Islay Scotch)</option>
+            <option value="diplomatico" data-i18n="pairing.spirit.diplomatico">Diplomático Reserva Exclusiva Rum</option>
+            <option value="lagavulin" data-i18n="pairing.spirit.lagavulin">Lagavulin 16 Year (Islay Scotch)</option>
           </select>
         </div>
         <div class="bg-cardbg p-5 rounded-lg border border-gold-500/20">
-          <label class="block text-xs font-cinzel tracking-widest text-gold-400 uppercase mb-2">3. Select Jazz</label>
-          <select id="select-jazz" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-sm text-slate-200 focus:border-gold-500 focus:outline-none">
+          <label for="select-jazz" class="block text-xs font-cinzel tracking-widest text-gold-400 uppercase mb-2" data-i18n="pairing.l3">3. Select Jazz</label>
+          <select id="select-jazz" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-sm text-slate-200 focus:border-gold-500 focus:outline-none">
             <option value="oscar">Oscar Peterson Trio — "Night Train"</option>
             <option value="miles">Miles Davis — "Kind of Blue"</option>
             <option value="billevans" selected>Bill Evans — "Waltz for Debby"</option>
@@ -267,78 +261,95 @@
           </select>
         </div>
       </div>
-      <!-- Result Card -->
-      <div class="card-luxury p-8 sm:p-10 border-gold-500/40 relative">
+      <div class="card-luxury p-8 sm:p-10 border-gold-500/40 relative" aria-live="polite">
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gold-500/20 pb-6 mb-6 gap-4">
           <div>
-            <span class="text-xs font-mono text-amber-500 tracking-widest uppercase">Aromatic Synergy</span>
-            <h3 id="pairing-harmony-title" class="font-cinzel text-2xl sm:text-3xl font-bold text-gold-gradient transition-opacity duration-300">
-              Tercio Cedar & Aristocratic Nuance
-            </h3>
+            <span class="text-xs font-mono text-amber-500 tracking-widest uppercase" data-i18n="pairing.synergy">Aromatic Synergy</span>
+            <h3 id="pairing-harmony-title" class="font-cinzel text-2xl sm:text-3xl font-bold text-gold-gradient transition-opacity duration-300">Tercio Cedar &amp; Aristocratic Nuance</h3>
           </div>
-          <span id="pairing-score-badge" class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold font-mono bg-gold-500/15 text-gold-300 border border-gold-500/30">
-            99 / 100 — Connoisseur Gold
-          </span>
+          <span id="pairing-score-badge" class="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold font-mono bg-gold-500/15 text-gold-300 border border-gold-500/30">Connoisseur Gold</span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
           <div class="bg-obsidian/70 p-4 rounded border border-slate-800">
-            <span class="text-gold-400 font-cinzel text-xs tracking-wider block mb-1">�� Cigar Palate:</span>
-            <p id="pairing-cigar-desc" class="text-slate-300 font-serif-luxury text-base">
-              Aged palm-bark fermentation yields sweet cedar, cinnamon, and delicate citrus zest.
-            </p>
+            <span class="text-gold-400 font-cinzel text-xs tracking-wider block mb-1"><i data-lucide="flame" class="inline w-3.5 h-3.5 -mt-0.5"></i> <span data-i18n="pairing.c1">Cigar Palate</span></span>
+            <p id="pairing-cigar-desc" class="text-slate-300 font-serif-luxury text-base">Aged palm-bark fermentation yields sweet cedar, cinnamon, and delicate citrus zest.</p>
           </div>
           <div class="bg-obsidian/70 p-4 rounded border border-slate-800">
-            <span class="text-gold-400 font-cinzel text-xs tracking-wider block mb-1">�� Spirit Harmonizer:</span>
-            <p id="pairing-spirit-desc" class="text-slate-300 font-serif-luxury text-base">
-              Velvety floral bouquet, toasted hazelnuts, and lingering dried apricot.
-            </p>
+            <span class="text-gold-400 font-cinzel text-xs tracking-wider block mb-1"><i data-lucide="wine" class="inline w-3.5 h-3.5 -mt-0.5"></i> <span data-i18n="pairing.c2">Spirit Harmonizer</span></span>
+            <p id="pairing-spirit-desc" class="text-slate-300 font-serif-luxury text-base">Velvety floral bouquet, toasted hazelnuts, and lingering dried apricot.</p>
           </div>
           <div class="bg-obsidian/70 p-4 rounded border border-slate-800">
-            <span class="text-gold-400 font-cinzel text-xs tracking-wider block mb-1">�� Acoustic Atmosphere:</span>
-            <p id="pairing-jazz-desc" class="text-slate-300 font-serif-luxury text-base">
-              Bill Evans' subtle harmonic voicings on 'Waltz for Debby' complement the Encore's refined finesse.
-            </p>
+            <span class="text-gold-400 font-cinzel text-xs tracking-wider block mb-1"><i data-lucide="music" class="inline w-3.5 h-3.5 -mt-0.5"></i> <span data-i18n="pairing.c3">Acoustic Atmosphere</span></span>
+            <p id="pairing-jazz-desc" class="text-slate-300 font-serif-luxury text-base">Bill Evans' subtle harmonic voicings on "Waltz for Debby" complement the Encore's refined finesse.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PRIVATE SALONS & TASTING SOIRÉES -->
-  <section id="soirees" class="py-24 bg-gradient-to-b from-obsidian via-[#0d0e14] to-obsidian border-t border-gold-500/15">
+  <!-- ===================== EVENTS CALENDAR ===================== -->
+  <section id="events" class="py-24 bg-gradient-to-b from-obsidian via-[#0d0e14] to-obsidian border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         <div class="lg:col-span-7 space-y-6">
-          <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block">Exclusive Gathering</span>
-          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider">
-            Soirée Dégustation: <br><span class="text-gold-gradient">Penthouse Edition</span>
-          </h2>
-          <p class="font-serif-luxury italic text-xl text-slate-300">
-            An evening of private reserves, vintage rum pairings, and analog vinyl jazz overlooking the illuminated Mount Royal skyline.
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-            <div class="flex items-center space-x-3 text-slate-300">
-              <i data-lucide="calendar" class="w-5 h-5 text-gold-400"></i>
-              <span class="text-sm">Vendredi 24 Mai 2026 · 19h00</span>
+          <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block" data-i18n="events.kicker">Salons &amp; Soirées</span>
+          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider" data-i18n-html="events.title">The <span class="text-gold-gradient">2026 Season</span></h2>
+          <p class="font-serif-luxury italic text-xl text-slate-300" data-i18n="events.sub">Private reserves, vintage rum pairings, and analog vinyl jazz — overlooking the illuminated Mount Royal skyline.</p>
+
+          <div id="events-list" class="space-y-4 pt-2">
+            <!-- Event 1 -->
+            <div class="card-luxury p-5 sm:p-6 flex flex-col sm:flex-row gap-5 sm:items-center">
+              <div class="shrink-0 w-20 text-center border border-gold-500/30 rounded-lg py-2 bg-black/40">
+                <div class="font-cinzel text-2xl font-bold text-gold-400">25</div>
+                <div class="text-[10px] uppercase tracking-widest text-slate-400" data-i18n="events.e1.month">Sep 2026</div>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-cinzel text-lg font-bold text-white" data-i18n="events.e1.title">Soirée Dégustation — Penthouse Edition</h3>
+                <p class="font-serif-luxury text-slate-300 text-base mt-1" data-i18n="events.e1.desc">E.P. Carrillo Encore with Rémy Martin XO. Oscar Peterson on vinyl. Twenty guests, one skyline.</p>
+                <div class="flex flex-wrap gap-x-5 gap-y-1 text-xs text-slate-400 mt-2">
+                  <span class="inline-flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-gold-400"></i> 19:00</span>
+                  <span class="inline-flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold-400"></i> <span data-i18n="events.e1.place">Private penthouse, downtown Montreal</span></span>
+                  <span class="inline-flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5 text-gold-400"></i> <span data-i18n="events.e1.cap">20 guests</span></span>
+                </div>
+              </div>
+              <button data-rsvp="Soirée Dégustation — Penthouse Edition (2026-09-25)" class="btn-gold text-xs px-5 py-2.5 rounded font-cinzel font-bold tracking-wider shrink-0" data-i18n="events.rsvp">RSVP</button>
             </div>
-            <div class="flex items-center space-x-3 text-slate-300">
-              <i data-lucide="map-pin" class="w-5 h-5 text-gold-400"></i>
-              <span class="text-sm">Private Penthouse, Downtown Montreal</span>
+            <!-- Event 2 -->
+            <div class="card-luxury p-5 sm:p-6 flex flex-col sm:flex-row gap-5 sm:items-center">
+              <div class="shrink-0 w-20 text-center border border-gold-500/30 rounded-lg py-2 bg-black/40">
+                <div class="font-cinzel text-2xl font-bold text-gold-400">23</div>
+                <div class="text-[10px] uppercase tracking-widest text-slate-400" data-i18n="events.e2.month">Oct 2026</div>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-cinzel text-lg font-bold text-white" data-i18n="events.e2.title">Maduro &amp; Rum — Autumn Salon</h3>
+                <p class="font-serif-luxury text-slate-300 text-base mt-1" data-i18n="events.e2.desc">Padrón 1964 Maduro against Diplomático Reserva Exclusiva. Miles Davis, Kind of Blue, first pressing.</p>
+                <div class="flex flex-wrap gap-x-5 gap-y-1 text-xs text-slate-400 mt-2">
+                  <span class="inline-flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-gold-400"></i> 19:30</span>
+                  <span class="inline-flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold-400"></i> <span data-i18n="events.e2.place">Golden Square Mile salon</span></span>
+                  <span class="inline-flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5 text-gold-400"></i> <span data-i18n="events.e2.cap">16 guests</span></span>
+                </div>
+              </div>
+              <button data-rsvp="Maduro & Rum — Autumn Salon (2026-10-23)" class="btn-outline-gold text-xs px-5 py-2.5 rounded font-cinzel font-semibold tracking-wider shrink-0" data-i18n="events.rsvp">RSVP</button>
             </div>
-            <div class="flex items-center space-x-3 text-slate-300">
-              <i data-lucide="users" class="w-5 h-5 text-gold-400"></i>
-              <span class="text-sm">Strictly Limited to 20 Guests</span>
-            </div>
-            <div class="flex items-center space-x-3 text-slate-300">
-              <i data-lucide="shield-check" class="w-5 h-5 text-gold-400"></i>
-              <span class="text-sm">Invitation & Member Vetting Only</span>
+            <!-- Event 3 -->
+            <div class="card-luxury p-5 sm:p-6 flex flex-col sm:flex-row gap-5 sm:items-center">
+              <div class="shrink-0 w-20 text-center border border-gold-500/30 rounded-lg py-2 bg-black/40">
+                <div class="font-cinzel text-2xl font-bold text-gold-400">27</div>
+                <div class="text-[10px] uppercase tracking-widest text-slate-400" data-i18n="events.e3.month">Nov 2026</div>
+              </div>
+              <div class="flex-1">
+                <h3 class="font-cinzel text-lg font-bold text-white" data-i18n="events.e3.title">Islay Night — Peat &amp; Oscuro</h3>
+                <p class="font-serif-luxury text-slate-300 text-base mt-1" data-i18n="events.e3.desc">My Father Le Bijou 1922 with Lagavulin 16. Chet Baker, late and quiet. Founders' lockers open for the evening.</p>
+                <div class="flex flex-wrap gap-x-5 gap-y-1 text-xs text-slate-400 mt-2">
+                  <span class="inline-flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-gold-400"></i> 20:00</span>
+                  <span class="inline-flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-gold-400"></i> <span data-i18n="events.e3.place">The Vault, members only</span></span>
+                  <span class="inline-flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5 text-gold-400"></i> <span data-i18n="events.e3.cap">12 guests</span></span>
+                </div>
+              </div>
+              <button data-rsvp="Islay Night — Peat & Oscuro (2026-11-27)" class="btn-outline-gold text-xs px-5 py-2.5 rounded font-cinzel font-semibold tracking-wider shrink-0" data-i18n="events.rsvp">RSVP</button>
             </div>
           </div>
-          <div class="pt-6">
-            <button onclick="openModal('modal-apply')" class="btn-gold px-8 py-3.5 rounded font-cinzel text-xs font-bold tracking-widest">
-              Request Salon Invitation
-            </button>
-          </div>
+          <p class="text-xs text-slate-500 pt-2" data-i18n="events.note">Dates are confirmed to members by invitation. Guests are vetted; seating is strictly limited.</p>
         </div>
         <div class="lg:col-span-5">
           <div class="rounded-xl overflow-hidden border border-gold-500/30 shadow-[0_0_40px_rgba(0,0,0,0.8)] relative group">
@@ -349,111 +360,230 @@
       </div>
     </div>
   </section>
-  <!-- L'ADHÉSION / MEMBERSHIP TIERS -->
-  <section id="membership" class="py-24 bg-black border-t border-gold-500/15">
+
+  <!-- ===================== THE VAULT ===================== -->
+  <section id="vault" class="py-24 bg-black border-t border-gold-500/15">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block mb-2">The Inner Circle</span>
-        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider">
-          Membership & <span class="text-gold-gradient">Privileges</span>
-        </h2>
-        <p class="font-serif-luxury italic text-lg text-slate-400 mt-2">
-          By invitation and selective committee vetting only.
-        </p>
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block mb-2" data-i18n="vault.kicker">Private Humidor Vault</span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider" data-i18n-html="vault.title">Fifty Lockers. <span class="text-gold-gradient">One Climate.</span></h2>
+        <p class="font-serif-luxury italic text-lg text-slate-400 mt-3" data-i18n="vault.sub">Bespoke Spanish-cedar lockers, each with its own sensor, held at 19–20 °C and 68–70 % RH, monitored around the clock.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <!-- Tier 1 -->
-        <div class="card-luxury p-8 sm:p-10 flex flex-col justify-between">
-          <div>
-            <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase">Social & Tasting Access</span>
-            <h3 class="font-cinzel text-2xl font-bold text-white mt-1">Le Cercle</h3>
-            <div class="mt-4 font-cinzel text-3xl font-bold text-gold-400">$1,850 <span class="text-xs text-slate-400 font-normal font-sans tracking-normal">CAD / Year</span></div>
-            <ul class="mt-8 space-y-3 text-sm text-slate-300">
-              <li class="flex items-center space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0"></i><span>Guaranteed access to all quarterly private tasting salons</span></li>
-              <li class="flex items-center space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0"></i><span>Curated member allocations of rare & limited vitolas</span></li>
-              <li class="flex items-center space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0"></i><span>Digital concierge & private tasting reservations</span></li>
-            </ul>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="card-luxury p-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-cinzel text-xs tracking-widest text-gold-400 uppercase">Vault 1</span>
+            <span class="inline-flex items-center text-[10px] text-emerald-400"><span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-emerald-400 animate-pulse"></span><span data-i18n="vault.optimal">Optimal</span></span>
           </div>
-          <button onclick="openModal('modal-apply')" class="mt-10 btn-outline-gold text-xs py-3 px-6 rounded w-full font-cinzel font-semibold tracking-wider">
-            Apply For Le Cercle
-          </button>
+          <div class="grid grid-cols-2 gap-4">
+            <div><div class="text-[10px] uppercase tracking-widest text-slate-500" data-i18n="vault.temp">Temperature</div><div class="font-mono text-2xl text-white mt-1" data-vault-temp>19.5°C</div></div>
+            <div><div class="text-[10px] uppercase tracking-widest text-slate-500" data-i18n="vault.rh">Humidity</div><div class="font-mono text-2xl text-white mt-1" data-vault-rh>69.2%</div></div>
+          </div>
+          <div class="mt-4 text-xs text-slate-400"><span data-i18n="vault.lockers">Lockers</span> 01–18 · <span data-i18n="vault.cedar">Spanish cedar, 2019 harvest</span></div>
         </div>
-        <!-- Tier 2 -->
-        <div class="card-luxury p-8 sm:p-10 flex flex-col justify-between border-gold-500/50 shadow-[0_0_35px_rgba(212,175,55,0.15)] relative">
-          <div class="absolute -top-3 right-6 bg-gold-500 text-black font-cinzel text-[10px] font-extrabold px-3 py-0.5 rounded uppercase tracking-wider">
-            Limited to 50 Lockers
+        <div class="card-luxury p-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-cinzel text-xs tracking-widest text-gold-400 uppercase">Vault 2</span>
+            <span class="inline-flex items-center text-[10px] text-emerald-400"><span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-emerald-400 animate-pulse"></span><span data-i18n="vault.optimal">Optimal</span></span>
           </div>
-          <div>
-            <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase">Private Humidor Vault</span>
-            <h3 class="font-cinzel text-2xl font-bold text-gold-gradient mt-1">Le Fondateur</h3>
-            <div class="mt-4 font-cinzel text-3xl font-bold text-gold-gradient">$4,500 <span class="text-xs text-slate-400 font-normal font-sans tracking-normal">CAD / Year</span></div>
-            <ul class="mt-8 space-y-3 text-sm text-slate-300">
-              <li class="flex items-center space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0"></i><span><strong>Bespoke Spanish Cedar Humidor Locker</strong> with individual sensors</span></li>
-              <li class="flex items-center space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0"></i><span>VIP priority access to pre-embargo & vintage cigar box allocations</span></li>
-              <li class="flex items-center space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0"></i><span>Reciprocal private club privileges in London, Geneva, and New York</span></li>
-              <li class="flex items-center space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0"></i><span>Complimentary guest passes for all private rooftop events</span></li>
-            </ul>
+          <div class="grid grid-cols-2 gap-4">
+            <div><div class="text-[10px] uppercase tracking-widest text-slate-500" data-i18n="vault.temp">Temperature</div><div class="font-mono text-2xl text-white mt-1" data-vault-temp>19.6°C</div></div>
+            <div><div class="text-[10px] uppercase tracking-widest text-slate-500" data-i18n="vault.rh">Humidity</div><div class="font-mono text-2xl text-white mt-1" data-vault-rh>69.0%</div></div>
           </div>
-          <button onclick="openModal('modal-apply')" class="mt-10 btn-gold text-xs py-3 px-6 rounded w-full font-cinzel font-bold tracking-wider">
-            Apply For Founder Vault
-          </button>
+          <div class="mt-4 text-xs text-slate-400"><span data-i18n="vault.lockers">Lockers</span> 19–36 · <span data-i18n="vault.vintage">Vintage &amp; pre-embargo reserve</span></div>
         </div>
+        <div class="card-luxury p-6">
+          <div class="flex items-center justify-between mb-4">
+            <span class="font-cinzel text-xs tracking-widest text-gold-400 uppercase">Vault 3</span>
+            <span class="inline-flex items-center text-[10px] text-emerald-400"><span class="w-1.5 h-1.5 mr-1.5 rounded-full bg-emerald-400 animate-pulse"></span><span data-i18n="vault.optimal">Optimal</span></span>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div><div class="text-[10px] uppercase tracking-widest text-slate-500" data-i18n="vault.temp">Temperature</div><div class="font-mono text-2xl text-white mt-1" data-vault-temp>19.4°C</div></div>
+            <div><div class="text-[10px] uppercase tracking-widest text-slate-500" data-i18n="vault.rh">Humidity</div><div class="font-mono text-2xl text-white mt-1" data-vault-rh>69.4%</div></div>
+          </div>
+          <div class="mt-4 text-xs text-slate-400"><span data-i18n="vault.lockers">Lockers</span> 37–50 · <span data-i18n="vault.founders">Founders' allocation</span></div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+        <div class="flex gap-4"><i data-lucide="thermometer" class="w-6 h-6 text-gold-400 shrink-0"></i><div><h4 class="font-cinzel text-white text-sm" data-i18n="vault.f1.t">Per-locker telemetry</h4><p class="text-slate-400 mt-1" data-i18n="vault.f1.d">Every locker carries its own temperature and humidity probe; members may consult readings in the portal.</p></div></div>
+        <div class="flex gap-4"><i data-lucide="shield-check" class="w-6 h-6 text-gold-400 shrink-0"></i><div><h4 class="font-cinzel text-white text-sm" data-i18n="vault.f2.t">Discreet access</h4><p class="text-slate-400 mt-1" data-i18n="vault.f2.d">Personal key and passcode. Concierge retrieval available during salons and by appointment.</p></div></div>
+        <div class="flex gap-4"><i data-lucide="package" class="w-6 h-6 text-gold-400 shrink-0"></i><div><h4 class="font-cinzel text-white text-sm" data-i18n="vault.f3.t">Allocation delivery</h4><p class="text-slate-400 mt-1" data-i18n="vault.f3.d">Member allocations rest in the vault for a minimum of 30 days before release — never shipped fresh.</p></div></div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ===================== MEMBERSHIP ===================== -->
+  <section id="membership" class="py-24 bg-gradient-to-b from-obsidian via-[#0a0c10] to-obsidian border-t border-gold-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block mb-2" data-i18n="member.kicker">The Inner Circle</span>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider" data-i18n-html="member.title">Membership &amp; <span class="text-gold-gradient">Privileges</span></h2>
+        <p class="font-serif-luxury italic text-lg text-slate-400 mt-2" data-i18n="member.sub">By invitation and selective committee vetting only.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="card-luxury p-8 sm:p-10 flex flex-col justify-between">
+          <div>
+            <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase" data-i18n="member.t1.kicker">Social &amp; Tasting Access</span>
+            <h3 class="font-cinzel text-2xl font-bold text-white mt-1">Le Cercle</h3>
+            <div class="mt-4 font-cinzel text-3xl font-bold text-gold-400">$1,850 <span class="text-xs text-slate-400 font-normal font-sans tracking-normal" data-i18n="member.year">CAD / Year</span></div>
+            <ul class="mt-8 space-y-3 text-sm text-slate-300">
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n="member.t1.b1">Guaranteed access to all quarterly private tasting salons</span></li>
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n="member.t1.b2">Curated member allocations of rare &amp; limited vitolas</span></li>
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n="member.t1.b3">Digital concierge &amp; private tasting reservations</span></li>
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n="member.t1.b4">One guest per salon, subject to vetting</span></li>
+            </ul>
+          </div>
+          <button data-apply-tier="cercle" class="mt-10 btn-outline-gold text-xs py-3 px-6 rounded w-full font-cinzel font-semibold tracking-wider" data-i18n="member.t1.cta">Apply For Le Cercle</button>
+        </div>
+        <div class="card-luxury p-8 sm:p-10 flex flex-col justify-between border-gold-500/50 shadow-[0_0_35px_rgba(212,175,55,0.15)] relative">
+          <div class="absolute -top-3 right-6 bg-gold-500 text-black font-cinzel text-[10px] font-extrabold px-3 py-0.5 rounded uppercase tracking-wider" data-i18n="member.t2.badge">Limited to 50 Lockers</div>
+          <div>
+            <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase" data-i18n="member.t2.kicker">Private Humidor Vault</span>
+            <h3 class="font-cinzel text-2xl font-bold text-gold-gradient mt-1">Le Fondateur</h3>
+            <div class="mt-4 font-cinzel text-3xl font-bold text-gold-gradient">$4,500 <span class="text-xs text-slate-400 font-normal font-sans tracking-normal" data-i18n="member.year">CAD / Year</span></div>
+            <ul class="mt-8 space-y-3 text-sm text-slate-300">
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n-html="member.t2.b1"><strong>Bespoke Spanish cedar humidor locker</strong> with individual sensors</span></li>
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n="member.t2.b2">VIP priority access to pre-embargo &amp; vintage cigar box allocations</span></li>
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n="member.t2.b3">Reciprocal private club privileges in London, Geneva, and New York</span></li>
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n="member.t2.b4">Complimentary guest passes for all private rooftop events</span></li>
+              <li class="flex items-start space-x-3"><i data-lucide="check" class="w-4 h-4 text-gold-400 shrink-0 mt-0.5"></i><span data-i18n="member.t2.b5">Everything in Le Cercle</span></li>
+            </ul>
+          </div>
+          <button data-apply-tier="fondateur" class="mt-10 btn-gold text-xs py-3 px-6 rounded w-full font-cinzel font-bold tracking-wider" data-i18n="member.t2.cta">Apply For Founder Vault</button>
+        </div>
+      </div>
+      <div class="max-w-4xl mx-auto mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center text-xs text-slate-400">
+        <div><div class="font-cinzel text-gold-400 text-base mb-1" data-i18n="member.how1.t">1. Apply</div><span data-i18n="member.how1.d">A confidential inquiry — name, contact, and a word about your palate.</span></div>
+        <div><div class="font-cinzel text-gold-400 text-base mb-1" data-i18n="member.how2.t">2. Conversation</div><span data-i18n="member.how2.d">A founding member meets you over a cigar. No forms, no interviews.</span></div>
+        <div><div class="font-cinzel text-gold-400 text-base mb-1" data-i18n="member.how3.t">3. Committee</div><span data-i18n="member.how3.d">The committee decides within thirty days. Discretion in both directions.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT & GALLERY ===================== -->
+  <section id="about" class="py-24 bg-black border-t border-gold-500/15">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block" data-i18n="about.kicker">The Club</span>
+          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white uppercase tracking-wider" data-i18n-html="about.title">Montreal, <span class="text-gold-gradient">by the Mountain</span></h2>
+          <p class="font-serif-luxury text-xl text-slate-300 leading-relaxed" data-i18n="about.p1">The Montreal Cigar Club was founded in 2026 by a small circle of collectors who wanted one thing: a room in this city where a serious cigar, a serious pour, and serious music could be enjoyed without hurry.</p>
+          <p class="font-serif-luxury text-lg text-slate-400 leading-relaxed" data-i18n="about.p2">We source directly — Estelí, the Dominican Republic, and the Canadian domestic market — and rest every stick in Spanish cedar before it reaches a member. The club is bilingual, private, and unapologetically Montréalais: the fleur-de-lis on our crest is not decoration.</p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+            <div class="card-luxury p-5"><i data-lucide="compass" class="w-5 h-5 text-gold-400 mb-3"></i><h4 class="font-cinzel text-white text-sm" data-i18n="about.founder1.t">Founding Curator</h4><p class="text-xs text-slate-400 mt-1" data-i18n="about.founder1.d">Selection, sourcing, and the vault. Twenty years of collecting, three continents.</p></div>
+            <div class="card-luxury p-5"><i data-lucide="disc-3" class="w-5 h-5 text-gold-400 mb-3"></i><h4 class="font-cinzel text-white text-sm" data-i18n="about.founder2.t">Music &amp; Salons</h4><p class="text-xs text-slate-400 mt-1" data-i18n="about.founder2.d">Programs each evening from an analog jazz collection; runs the room.</p></div>
+            <div class="card-luxury p-5"><i data-lucide="scroll-text" class="w-5 h-5 text-gold-400 mb-3"></i><h4 class="font-cinzel text-white text-sm" data-i18n="about.founder3.t">Committee</h4><p class="text-xs text-slate-400 mt-1" data-i18n="about.founder3.d">Three founding members vet every application. Decisions are unanimous or not at all.</p></div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <figure class="rounded-xl overflow-hidden border border-gold-500/30 aspect-square"><img src="assets/gallery-crest.jpg" alt="Royal gold crest — crossed cigars beneath a fleur-de-lis crown" width="800" height="800" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"></figure>
+          <figure class="rounded-xl overflow-hidden border border-gold-500/30 aspect-square"><img src="assets/gallery-seal.jpg" alt="Emerald heritage seal with Mount Royal and Notre-Dame silhouette" width="800" height="800" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"></figure>
+          <figure class="rounded-xl overflow-hidden border border-gold-500/30 aspect-square"><img src="assets/gallery-lounge.jpg" alt="Penthouse tasting lounge at dusk" width="800" height="800" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"></figure>
+          <figure class="rounded-xl overflow-hidden border border-gold-500/30 aspect-square"><img src="assets/gallery-heritage.jpg" alt="Heritage Luxe concept — leather, brass and cedar" width="800" height="800" loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"></figure>
+        </div>
+      </div>
+      <div class="text-center">
+        <p class="font-serif-luxury italic text-lg text-slate-400" data-i18n="about.quote">"Nothing better than the Montreal Cigar Club." — a member, to a friend in Meissen</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
   <footer class="bg-black border-t border-gold-500/20 py-16 text-slate-400 text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
       <div class="text-center md:text-left space-y-2">
         <div class="font-cinzel text-lg font-bold text-gold-gradient">MONTREAL CIGAR CLUB</div>
-        <p class="text-slate-400">Golden Square Mile · Montreal, Quebec, Canada</p>
-        <p class="text-[11px] text-slate-400" data-en="Strictly 18+ (legal age in Quebec). Members-only society." data-fr="Réservé aux 18 ans et plus (âge légal au Québec). Société privée réservée aux membres.">Strictly 18+ (legal age in Quebec). Members-only society.</p>
+        <p class="text-slate-400"><span data-i18n="footer.addr">Golden Square Mile · Montreal, Quebec, Canada</span></p>
+        <p class="text-slate-400"><a href="mailto:concierge@montrealcigarclub.ca" class="hover:text-gold-400">concierge@montrealcigarclub.ca</a></p>
+        <p class="text-[11px] text-slate-400" data-i18n="footer.age">Strictly 18+ (legal age in Quebec). Members-only society.</p>
       </div>
-      <div class="text-center md:text-right space-y-2">
-        <div class="flex justify-center md:justify-end space-x-6 text-slate-400 font-cinzel">
-          <a href="#humidor" class="hover:text-gold-400">Humidor</a>
-          <a href="#pairing" class="hover:text-gold-400">Pairing Engine</a>
-          <a href="#membership" class="hover:text-gold-400">Membership</a>
+      <div class="text-center md:text-right space-y-3">
+        <div class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 text-slate-400 font-cinzel">
+          <a href="#humidor" class="hover:text-gold-400" data-i18n="nav.humidor">The Humidor</a>
+          <a href="#events" class="hover:text-gold-400" data-i18n="nav.events">Events</a>
+          <a href="#membership" class="hover:text-gold-400" data-i18n="nav.membership">Membership</a>
+          <a href="privacy.html" class="hover:text-gold-400" data-i18n="footer.privacy">Privacy</a>
+          <a href="terms.html" class="hover:text-gold-400" data-i18n="footer.terms">Terms</a>
         </div>
-        <p class="text-[11px] text-slate-600">© 2026 Montreal Cigar Club. All Rights Reserved.</p>
+        <p class="text-[11px] text-slate-500" data-i18n="footer.legal">Tobacco products are harmful. This site does not sell tobacco and is intended for adults 18+ only.</p>
+        <p class="text-[11px] text-slate-500" data-i18n="footer.copy">© 2026 Montreal Cigar Club. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <!-- MODALS -->
-  <div id="modal-apply" class="modal-backdrop fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="card-luxury p-8 max-w-lg w-full border-gold-500/50 shadow-2xl relative">
-      <button class="modal-close absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
-      <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase">Private Vetting</span>
-      <h3 class="font-cinzel text-2xl font-bold text-white mt-1">Membership Application</h3>
-      <p class="font-serif-luxury text-slate-300 text-sm mt-1">Please complete the confidential inquiry below.</p>
-      <form class="mt-6 space-y-4 text-xs" onsubmit="event.preventDefault(); alert('Inquiry received. The Membership Committee will review your application with strict discretion.'); document.getElementById('modal-apply').classList.add('hidden');">
-        <div><label class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1">Full Legal Name</label><input type="text" required placeholder="e.g. Rosen V." class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
-        <div><label class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1">Confidential Email</label><input type="email" required placeholder="name@domain.com" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
-        <div><label class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1">Desired Tier</label><select class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-slate-200 focus:border-gold-500 focus:outline-none"><option>Le Cercle ($1,850 CAD / Year)</option><option>Le Fondateur ($4,500 CAD / Year — Private Vault Locker)</option></select></div>
-        <div><label class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1">Preferred Vitolas / Notes</label><textarea rows="3" placeholder="Tell us about your palate (e.g., Padrón 1964, E.P. Carrillo Encore, Cuban vintage)..." class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-slate-200 focus:border-gold-500 focus:outline-none"></textarea></div>
-        <button type="submit" class="btn-gold w-full py-3 rounded font-cinzel font-bold tracking-widest uppercase mt-4">Submit Confidential Application</button>
+  <!-- ===================== MODALS ===================== -->
+  <!-- Membership application -->
+  <div id="modal-apply" class="modal-backdrop fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="apply-title">
+    <div class="card-luxury p-8 max-w-lg w-full border-gold-500/50 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+      <button class="modal-close absolute top-4 right-4 text-slate-400 hover:text-white" aria-label="Close"><i data-lucide="x" class="w-6 h-6"></i></button>
+      <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase" data-i18n="apply.kicker">Private Vetting</span>
+      <h3 id="apply-title" class="font-cinzel text-2xl font-bold text-white mt-1" data-i18n="apply.title">Membership Application</h3>
+      <p class="font-serif-luxury text-slate-300 text-sm mt-1" data-i18n="apply.sub">Please complete the confidential inquiry below.</p>
+      <form id="form-apply" class="mt-6 space-y-4 text-xs" novalidate>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+        <div><label for="apply-name" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="apply.name">Full legal name</label><input id="apply-name" name="name" type="text" required minlength="2" maxlength="120" autocomplete="name" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
+        <div><label for="apply-email" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="apply.email">Confidential email</label><input id="apply-email" name="email" type="email" required maxlength="160" autocomplete="email" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
+        <div><label for="apply-phone" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="apply.phone">Telephone (optional)</label><input id="apply-phone" name="phone" type="tel" maxlength="40" autocomplete="tel" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
+        <div><label for="apply-tier" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="apply.tier">Desired tier</label>
+          <select id="apply-tier" name="tier" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none">
+            <option value="cercle">Le Cercle — $1,850 CAD</option>
+            <option value="fondateur" data-i18n="apply.tier2">Le Fondateur — $4,500 CAD (private vault locker)</option>
+          </select></div>
+        <div><label for="apply-notes" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="apply.notes">Preferred vitolas / notes</label><textarea id="apply-notes" name="notes" rows="3" maxlength="2000" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></textarea></div>
+        <label class="flex items-start gap-2 text-slate-400"><input type="checkbox" name="age" required class="mt-0.5 accent-[#d4af37]"><span data-i18n="apply.age">I confirm that I am at least 18 years old and consent to being contacted about my application.</span></label>
+        <p class="form-status hidden text-sm rounded px-3 py-2" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn-gold w-full py-3 rounded font-cinzel font-bold tracking-widest uppercase mt-2" data-i18n="apply.submit">Submit Confidential Application</button>
       </form>
     </div>
   </div>
 
-  <div id="modal-login" class="modal-backdrop fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+  <!-- Event RSVP -->
+  <div id="modal-rsvp" class="modal-backdrop fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="rsvp-title">
+    <div class="card-luxury p-8 max-w-lg w-full border-gold-500/50 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+      <button class="modal-close absolute top-4 right-4 text-slate-400 hover:text-white" aria-label="Close"><i data-lucide="x" class="w-6 h-6"></i></button>
+      <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase" data-i18n="rsvp.kicker">Salon Invitation</span>
+      <h3 id="rsvp-title" class="font-cinzel text-2xl font-bold text-white mt-1" data-i18n="rsvp.title">Request a Seat</h3>
+      <p id="rsvp-event-label" class="font-serif-luxury text-gold-300 text-base mt-1"></p>
+      <form id="form-rsvp" class="mt-6 space-y-4 text-xs" novalidate>
+        <input type="hidden" name="event" id="rsvp-event">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+        <div><label for="rsvp-name" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="apply.name">Full legal name</label><input id="rsvp-name" name="name" type="text" required minlength="2" maxlength="120" autocomplete="name" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
+        <div><label for="rsvp-email" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="apply.email">Confidential email</label><input id="rsvp-email" name="email" type="email" required maxlength="160" autocomplete="email" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
+        <div class="grid grid-cols-2 gap-4">
+          <div><label for="rsvp-guests" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="rsvp.guests">Seats</label><select id="rsvp-guests" name="guests" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"><option value="1">1</option><option value="2">2</option></select></div>
+          <div><label for="rsvp-member" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="rsvp.member">Member ID (if any)</label><input id="rsvp-member" name="member" type="text" maxlength="40" placeholder="MCC-0000" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
+        </div>
+        <div><label for="rsvp-notes" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="rsvp.notes">Dietary notes / message</label><textarea id="rsvp-notes" name="notes" rows="2" maxlength="1000" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></textarea></div>
+        <label class="flex items-start gap-2 text-slate-400"><input type="checkbox" name="age" required class="mt-0.5 accent-[#d4af37]"><span data-i18n="rsvp.age">I confirm that all guests are at least 18 years old.</span></label>
+        <p class="form-status hidden text-sm rounded px-3 py-2" role="status" aria-live="polite"></p>
+        <button type="submit" class="btn-gold w-full py-3 rounded font-cinzel font-bold tracking-widest uppercase mt-2" data-i18n="rsvp.submit">Request Invitation</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Tasting dossier -->
+  <div id="modal-dossier" class="modal-backdrop fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="dossier-title">
+    <div class="card-luxury p-8 max-w-lg w-full border-gold-500/50 shadow-2xl relative max-h-[92vh] overflow-y-auto">
+      <button class="modal-close absolute top-4 right-4 text-slate-400 hover:text-white" aria-label="Close"><i data-lucide="x" class="w-6 h-6"></i></button>
+      <span class="text-amber-500 font-cinzel text-xs tracking-widest uppercase" data-i18n="dossier.kicker">Tasting Dossier</span>
+      <h3 id="dossier-title" class="font-cinzel text-2xl font-bold text-gold-gradient mt-1"></h3>
+      <dl id="dossier-body" class="mt-5 space-y-3 text-sm"></dl>
+      <p id="dossier-notes" class="font-serif-luxury text-slate-300 text-base mt-5 leading-relaxed"></p>
+    </div>
+  </div>
+
+  <!-- Member portal (placeholder — no live accounts yet) -->
+  <div id="modal-login" class="modal-backdrop fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="login-title">
     <div class="card-luxury p-8 max-w-md w-full border-gold-500/50 shadow-2xl relative text-center">
-      <button class="modal-close absolute top-4 right-4 text-slate-400 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+      <button class="modal-close absolute top-4 right-4 text-slate-400 hover:text-white" aria-label="Close"><i data-lucide="x" class="w-6 h-6"></i></button>
       <div class="w-12 h-12 rounded-full border border-gold-500/40 bg-gold-500/10 flex items-center justify-center mx-auto text-gold-400 mb-4"><i data-lucide="lock" class="w-5 h-5"></i></div>
-      <h3 class="font-cinzel text-xl font-bold text-white">Member Vault Portal</h3>
-      <p class="font-serif-luxury text-slate-400 text-sm mt-1">Access your private humidor locker & allocations.</p>
-      <form class="mt-6 space-y-4 text-xs text-left" onsubmit="event.preventDefault(); alert('Accessing Locker #14... Temperature: 19.5°C | Relative Humidity: 69.2% (Optimal). Allocations Verified.'); document.getElementById('modal-login').classList.add('hidden');">
-        <div><label class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1">Member ID / Key</label><input type="text" required placeholder="MCC-8821" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
-        <div><label class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1">Passcode</label><input type="password" required placeholder="••••••••" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
-        <button type="submit" class="btn-gold w-full py-3 rounded font-cinzel font-bold tracking-widest uppercase mt-4">Authenticate Vault</button>
-      </form>
+      <h3 id="login-title" class="font-cinzel text-xl font-bold text-white" data-i18n="login.title">Member Vault Portal</h3>
+      <p class="font-serif-luxury text-slate-400 text-sm mt-2 leading-relaxed" data-i18n="login.soon">The member portal opens with the first salon of the season. Founding members receive their key and passcode by hand.</p>
+      <a href="mailto:vault@montrealcigarclub.ca" class="btn-outline-gold inline-block mt-6 text-xs py-3 px-6 rounded font-cinzel font-semibold tracking-wider" data-i18n="login.contact">Contact the Vault</a>
     </div>
   </div>
 
+  <script src="js/i18n.js"></script>
   <script src="js/app.js"></script>
-  <script>lucide.createIcons();</script>
 </body>
 </html>
-

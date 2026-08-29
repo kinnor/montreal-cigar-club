@@ -151,3 +151,20 @@ body {
   0% { transform: scaleY(0.3); }
   100% { transform: scaleY(1.2); }
 }
+
+/* Legal pages */
+.legal h2 { font-family: 'Cinzel', serif; color: #f5df95; font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 2.25rem 0 0.75rem; }
+.legal p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.7; color: #cbd5e1; margin: 0.6rem 0; }
+.legal a { color: #e5c05c; text-decoration: underline; text-underline-offset: 3px; }
+.legal table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+.legal th, .legal td { text-align: left; vertical-align: top; padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(212,175,55,0.15); }
+.legal th { color: #e5c05c; font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+
+/* Accessibility: respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .eq-bar, .animate-pulse { animation: none !important; }
+  .card-luxury, .btn-gold, .btn-outline-gold, img { transition: none !important; }
+  * { scroll-behavior: auto !important; }
+}
+/* Focus rings on gold controls */
+.btn-gold:focus-visible, .btn-outline-gold:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visible { outline: 2px solid #f5df95; outline-offset: 2px; }
