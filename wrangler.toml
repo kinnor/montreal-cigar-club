@@ -16,10 +16,9 @@ pages_build_output_dir = "web_root"
 binding = "MCC_SUBMISSIONS"
 id = "86439abda36f425dbd499949866a6344"
 
-# Email notifications (Cloudflare Email Service). Requires montrealcigarclub.ca onboarded to Email Sending.
-# Transport 1: the send_email binding below. Transport 2 (fallback): secret EMAIL_API_TOKEN with Email Sending permission.
-[[send_email]]
-name = "EMAIL"
+# Email notifications (Cloudflare Email Service, REST API — Pages Functions do not support the send_email binding).
+# Requires: (1) montrealcigarclub.ca onboarded to Email Sending, (2) secret EMAIL_API_TOKEN with Email Sending permission:
+#   wrangler pages secret put EMAIL_API_TOKEN --project-name=montreal-cigar-club
 
 [vars]
 MAIL_TO = "admissions@montrealcigarclub.ca"
