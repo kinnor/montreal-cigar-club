@@ -1,0 +1,15 @@
+# Cloudflare Pages redirects — https://developers.cloudflare.com/pages/configuration/redirects/
+# NOTE: Pages _redirects cannot match on hostname. The mtlcigarclub.ca -> montrealcigarclub.ca
+# 301 is handled by workers/redirect (Worker route) or a zone-level Redirect Rule.
+
+# Clean section routes (temporary — anchors on the single page)
+/humidor     /#humidor     302
+/pairing     /#pairing     302
+/events      /#soirees     302
+/soirees     /#soirees     302
+/membership  /#membership  302
+/apply       /#membership  302
+
+# Legacy flat paths from the prototype
+/styles.css  /css/styles.css  301
+/app.js      /js/app.js       301

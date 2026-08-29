@@ -1,0 +1,153 @@
+/* ==========================================================================
+   MONTREAL CIGAR CLUB — ULTRA-LUXURY STYLESHEET
+   Midnight Obsidian & 24K Brushed Gold Design System
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-obsidian: #07080a;
+  --bg-card: #0e1015;
+  --bg-card-hover: #141720;
+  --gold-primary: #d4af37;
+  --gold-light: #f5df95;
+  --gold-dark: #99751e;
+  --amber-glow: #e5a93c;
+  --text-muted: #94a3b8;
+  --border-gold: rgba(212, 175, 55, 0.25);
+  --border-gold-hover: rgba(212, 175, 55, 0.65);
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-obsidian);
+  color: #f1f5f9;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #d4af37;
+  selection-color: #07080a;
+}
+
+/* Typography Classes */
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-serif-luxury {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Gold Gradient Text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fce8a6 0%, #d4af37 50%, #99751e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-amber-gradient {
+  background: linear-gradient(135deg, #ffd78a 0%, #e5a93c 50%, #b45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Luxury Gold Buttons */
+.btn-gold {
+  background: linear-gradient(135deg, #f5df95 0%, #d4af37 50%, #aa7c1c 100%);
+  color: #090a0d;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #ffffff 0%, #f5df95 50%, #d4af37 100%);
+  box-shadow: 0 8px 30px rgba(229, 169, 60, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-outline-gold {
+  background: transparent;
+  color: #f5df95;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #d4af37;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+/* Glassmorphism & Cards */
+.card-luxury {
+  background: rgba(14, 16, 21, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-luxury:hover {
+  border-color: var(--border-gold-hover);
+  background: rgba(20, 23, 32, 0.85);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Glowing Ember Animation */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.glow-amber {
+  filter: drop-shadow(0 0 25px rgba(229, 169, 60, 0.45));
+}
+
+.glow-subtle {
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.25));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #07080a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2e3d;
+  border-radius: 4px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
+
+/* Equalizer Bars */
+.eq-bar {
+  width: 3px;
+  background: #d4af37;
+  border-radius: 2px;
+  animation: eqAnimation 1.2s infinite ease-in-out alternate;
+}
+.eq-bar:nth-child(1) { height: 8px; animation-delay: 0.1s; }
+.eq-bar:nth-child(2) { height: 16px; animation-delay: 0.3s; }
+.eq-bar:nth-child(3) { height: 12px; animation-delay: 0.2s; }
+.eq-bar:nth-child(4) { height: 20px; animation-delay: 0.4s; }
+
+@keyframes eqAnimation {
+  0% { transform: scaleY(0.3); }
+  100% { transform: scaleY(1.2); }
+}

@@ -1,0 +1,36 @@
+# ---- Secrets: never commit ----
+secrets/
+*.key
+*.pem
+.env
+.env.*
+*secret*
+*credential*
+*token*
+*.env.local
+
+# ---- Tooling / OS ----
+node_modules/
+.wrangler/
+.dev.vars
+npm-debug.log*
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Claude Code local state ----
+.claude/settings.local.json
+memories.md
+
+# ---- Legacy flat prototype copies (web_root/ is canonical) ----
+/index.html
+/styles.css
+/app.js
+/generate_html.py
+/nav.html
+/sec1.html
+/sec2.html
+
+# ---- Original high-res artwork (kept locally; web_root/assets holds optimised versions) ----
+/*.jpg
+/assets/

@@ -1,0 +1,57 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -NoProfile -Command \"Write-Host '=== Montreal Cigar Club ===' -ForegroundColor Cyan; $files = Get-ChildItem 'D:/Data Files/Project/Research/Montreal_Cigar_Club' -Recurse -File | Where-Object { $_.FullName -notmatch 'secrets' } | Measure-Object; Write-Host \\\"Files: $($files.Count) (excluding secrets/)\\\" -ForegroundColor Green; if (Test-Path 'D:/Data Files/Project/Research/Montreal_Cigar_Club/index.html') { Write-Host 'Site: index.html present - preview with: python -m http.server 8080' -ForegroundColor Green } else { Write-Host 'Site: index.html not yet generated' -ForegroundColor Yellow }; Write-Host 'Ready.' -ForegroundColor Cyan\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "mcpServers": {
+    "memory": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "--init", "--security-opt", "no-new-privileges", "--cpus", "1", "--memory", "2Gb", "-v", "mcp-montrealcigarclub-memory:/app/dist", "mcp/memory"],
+      "timeout": 30000
+    },
+    "sequentialthinking": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "--init", "--security-opt", "no-new-privileges", "--cpus", "1", "--memory", "2Gb", "mcp/sequentialthinking"],
+      "timeout": 30000
+    },
+    "fetch": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "--init", "--security-opt", "no-new-privileges", "--cpus", "1", "--memory", "2Gb", "mcp/fetch"],
+      "timeout": 30000
+    },
+    "task-orchestrator": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "--init", "--security-opt", "no-new-privileges", "--cpus", "1", "--memory", "2Gb", "-v", "mcp-montrealcigarclub-tasks:/app/data", "ghcr.io/jpicklyk/task-orchestrator"],
+      "timeout": 30000
+    },
+    "filesystem": {
+      "command": "docker",
+      "args": ["run", "--rm", "-i", "--init", "--security-opt", "no-new-privileges", "--cpus", "1", "--memory", "512Mb", "-v", "D:/Data Files/Project/Research/Montreal_Cigar_Club:/workspace:ro", "mcp/filesystem", "/workspace"],
+      "timeout": 30000
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git status:*)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git branch:*)",
+      "Bash(git show:*)",
+      "Bash(python -m http.server:*)",
+      "Bash(npx wrangler pages deploy:*)",
+      "Bash(npx wrangler pages project list:*)",
+      "Bash(npx wrangler whoami:*)",
+      "Bash(powershell -ExecutionPolicy Bypass -File scripts/with-secrets.ps1:*)",
+      "PowerShell(powershell -ExecutionPolicy Bypass -File scripts/with-secrets.ps1:*)"
+    ]
+  }
+}

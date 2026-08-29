@@ -1,0 +1,15 @@
+{
+  "name": "montreal-cigar-club",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Montreal Cigar Club — luxury members portal (static site on Cloudflare Pages)",
+  "scripts": {
+    "dev": "npx --yes serve web_root -l 8080",
+    "check": "node scripts/check-site.mjs",
+    "deploy": "wrangler pages deploy web_root --project-name=montreal-cigar-club",
+    "deploy:redirect": "wrangler deploy --config workers/redirect/wrangler.toml"
+  },
+  "devDependencies": {
+    "wrangler": "^4.127.1"
+  }
+}

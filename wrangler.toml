@@ -1,0 +1,12 @@
+# Cloudflare Pages configuration — Montreal Cigar Club
+# Deploy:  npx wrangler pages deploy web_root --project-name=montreal-cigar-club
+# Docs:    https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+
+name = "montreal-cigar-club"
+compatibility_date = "2026-08-01"
+pages_build_output_dir = "web_root"
+
+# Custom domains are attached in the dashboard (Workers & Pages -> montreal-cigar-club -> Custom domains):
+#   montrealcigarclub.ca   (canonical)
+#   www.montrealcigarclub.ca (optional, redirect to apex via Redirect Rule)
+# The mtlcigarclub.ca -> montrealcigarclub.ca 301 lives in workers/redirect/.
