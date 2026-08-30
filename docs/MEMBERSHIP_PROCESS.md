@@ -63,7 +63,7 @@ The sponsor writes a **five-line note** to the committee thread the same day: wh
 
 1. Welcome email from the sponsor (personal, not templated)
 2. Membership agreement (PDF) — tier, dues, term (12 months, renewable), house rules, privacy notice, locker terms if Fondateur
-3. Dues: Le Cercle $1,850 CAD / year · Le Fondateur $4,500 CAD / year — payable within 14 days; membership starts on payment
+3. Dues: Le Cercle $1,850 CAD / year · Le Fondateur $4,500 CAD / year — payable within 14 days at **https://montrealcigarclub.ca/dues** (Stripe hosted checkout; the acceptance email includes the link and the applicant's MCC reference); membership starts on payment. The committee receives a "[MCC] Dues paid" email from the webhook
 4. Concierge schedules the first salon and prepares key, passcode, and locker plate
 
 ## 7. Data handling (Privacy Policy §5)

@@ -14,7 +14,7 @@ import { spawnSync } from 'node:child_process';
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, '..', 'web_root');
 const problems = [];
-const pages = ['index.html', 'privacy.html', 'terms.html'].filter(p => existsSync(join(root, p)));
+const pages = ['index.html', 'privacy.html', 'terms.html', 'dues.html'].filter(p => existsSync(join(root, p)));
 const html = Object.fromEntries(pages.map(p => [p, readFileSync(join(root, p), 'utf8')]));
 const css = readFileSync(join(root, 'css/styles.css'), 'utf8');
 const js = readFileSync(join(root, 'js/app.js'), 'utf8');

@@ -75,7 +75,7 @@ window.I18N = {
 
     'footer.addr': 'Golden Square Mile · Montreal, Quebec, Canada',
     'footer.age': 'Strictly 18+ (legal age in Quebec). Members-only society.',
-    'footer.privacy': 'Privacy', 'footer.terms': 'Terms',
+    'footer.privacy': 'Privacy', 'footer.terms': 'Terms', 'footer.dues': 'Member dues',
     'footer.legal': 'Tobacco products are harmful. This site does not sell tobacco and is intended for adults 18+ only.',
     'footer.copy': '© 2026 Montreal Cigar Club. All rights reserved.',
 
@@ -91,6 +91,16 @@ window.I18N = {
     'dossier.kicker': 'Tasting Dossier',
     'login.title': 'Member Vault Portal', 'login.soon': 'The member portal opens with the first salon of the season. Founding members receive their key and passcode by hand.', 'login.contact': 'Contact the Vault',
 
+    'dues.kicker': 'Members', 'dues.title': 'Membership Dues',
+    'dues.sub': "For accepted applicants and renewing members. Payment is processed securely by Stripe; the club never sees your card details.",
+    'dues.tier': 'Membership tier', 'dues.email': 'Email (for the receipt)',
+    'dues.ref': 'Application reference (from your acceptance email, e.g. MCC-1A2B3C4D)',
+    'dues.submit': 'Pay Securely with Stripe',
+    'dues.note': "You will be redirected to Stripe's secure checkout. Dues are payable within 14 days of acceptance; membership begins on payment (see Terms).",
+    'dues.okTitle': 'Payment received — welcome.',
+    'dues.okBody': 'Thank you. Stripe has emailed you a receipt, and the committee has been notified. The concierge will write within three days to schedule your first salon and hand over your key and passcode.',
+    'dues.canceled': 'The payment was cancelled — nothing was charged. You can try again below.',
+    'dues.notReady': 'Online payment is not yet activated. Please write to admissions@montrealcigarclub.ca.',
     'form.sending': 'Sending…', 'form.ok.apply': 'Received. The Membership Committee will review your application with strict discretion and reply within thirty days.',
     'form.ok.rsvp': 'Received. If a seat is available, the concierge will confirm by email.',
     'form.err': 'Something went wrong. Please try again, or write to concierge@montrealcigarclub.ca.',
@@ -170,7 +180,7 @@ window.I18N = {
 
     'footer.addr': 'Mille carré doré · Montréal (Québec) Canada',
     'footer.age': 'Réservé aux 18 ans et plus (âge légal au Québec). Société privée réservée aux membres.',
-    'footer.privacy': 'Confidentialité', 'footer.terms': 'Conditions',
+    'footer.privacy': 'Confidentialité', 'footer.terms': 'Conditions', 'footer.dues': 'Cotisation des membres',
     'footer.legal': 'Les produits du tabac sont nocifs. Ce site ne vend pas de tabac et s’adresse uniquement aux adultes de 18 ans et plus.',
     'footer.copy': '© 2026 Club de Cigare de Montréal. Tous droits réservés.',
 
@@ -186,6 +196,16 @@ window.I18N = {
     'dossier.kicker': 'Dossier de dégustation',
     'login.title': 'Portail des membres', 'login.soon': 'Le portail des membres ouvre avec le premier salon de la saison. Les membres fondateurs reçoivent leur clé et leur code en main propre.', 'login.contact': 'Écrire à la cave',
 
+    'dues.kicker': 'Membres', 'dues.title': 'Cotisation d’adhésion',
+    'dues.sub': 'Pour les candidats acceptés et les membres qui renouvellent. Le paiement est traité de façon sécurisée par Stripe ; le club ne voit jamais les données de votre carte.',
+    'dues.tier': 'Niveau d’adhésion', 'dues.email': 'Courriel (pour le reçu)',
+    'dues.ref': 'Référence de candidature (de votre courriel d’acceptation, p. ex. MCC-1A2B3C4D)',
+    'dues.submit': 'Payer de façon sécurisée avec Stripe',
+    'dues.note': 'Vous serez redirigé vers le paiement sécurisé de Stripe. La cotisation est payable dans les 14 jours suivant l’acceptation ; l’adhésion débute au paiement (voir les Conditions).',
+    'dues.okTitle': 'Paiement reçu — bienvenue.',
+    'dues.okBody': 'Merci. Stripe vous a envoyé un reçu par courriel et le comité a été avisé. Le concierge vous écrira dans les trois jours pour planifier votre premier salon et vous remettre votre clé et votre code.',
+    'dues.canceled': 'Le paiement a été annulé — rien n’a été facturé. Vous pouvez réessayer ci-dessous.',
+    'dues.notReady': 'Le paiement en ligne n’est pas encore activé. Veuillez écrire à admissions@montrealcigarclub.ca.',
     'form.sending': 'Envoi…', 'form.ok.apply': 'Bien reçu. Le comité d’adhésion examinera votre demande en toute discrétion et vous répondra dans les trente jours.',
     'form.ok.rsvp': 'Bien reçu. Si une place est disponible, le concierge confirmera par courriel.',
     'form.err': 'Une erreur est survenue. Veuillez réessayer ou écrire à concierge@montrealcigarclub.ca.',

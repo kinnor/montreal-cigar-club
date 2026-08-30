@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Dues — Montreal Cigar Club</title>
+  <meta name="description" content="Secure payment of Montreal Cigar Club membership dues (Stripe).">
+  <link rel="canonical" href="https://montrealcigarclub.ca/dues">
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#07080a">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/styles.css?v=20260830b">
+  <script>tailwind.config={theme:{extend:{colors:{obsidian:"#07080a",cardbg:"#0e1015",gold:{300:"#f5df95",400:"#e5c05c",500:"#d4af37",600:"#aa7c1c",700:"#7a540e"}}}}}</script>
+</head>
+<body class="bg-obsidian text-slate-200 antialiased">
+  <nav class="border-b border-gold-500/15 bg-obsidian/90">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 h-20 flex justify-between items-center">
+      <a href="/" class="flex items-center gap-3">
+        <img src="assets/Montreal_Cigar_Club_Logo_Royal_Gold.jpg" alt="" width="44" height="44" class="w-11 h-11 rounded-full object-cover border border-gold-500/40">
+        <span class="font-cinzel text-lg font-bold tracking-widest text-gold-gradient">MONTREAL CIGAR CLUB</span>
+      </a>
+      <div class="flex items-center gap-5 text-xs">
+        <button id="lang-toggle-btn" class="text-gold-400 hover:text-gold-300 font-semibold tracking-wider">FR</button>
+        <a href="/" class="text-slate-300 hover:text-gold-400 font-cinzel tracking-wider" data-i18n="legal.back">← Back to the club</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-16">
+    <span class="text-gold-400 font-cinzel text-xs tracking-[0.3em] uppercase block mb-2" data-i18n="dues.kicker">Members</span>
+    <h1 class="font-cinzel text-3xl sm:text-4xl font-bold text-white" data-i18n="dues.title">Membership Dues</h1>
+    <p class="font-serif-luxury text-lg text-slate-300 mt-3 leading-relaxed" data-i18n="dues.sub">For accepted applicants and renewing members. Payment is processed securely by Stripe; the club never sees your card details.</p>
+
+    <!-- Success -->
+    <div id="pay-success" class="card-luxury border-emerald-500/40 p-8 mt-8 hidden">
+      <h2 class="font-cinzel text-xl font-bold text-emerald-300" data-i18n="dues.okTitle">Payment received — welcome.</h2>
+      <p class="font-serif-luxury text-slate-300 mt-2 leading-relaxed" data-i18n="dues.okBody">Thank you. Stripe has emailed you a receipt, and the committee has been notified. The concierge will write within three days to schedule your first salon and hand over your key and passcode.</p>
+      <p id="pay-success-detail" class="text-sm text-gold-300 font-mono mt-3"></p>
+    </div>
+    <!-- Cancelled -->
+    <div id="pay-cancel" class="card-luxury border-red-500/30 p-6 mt-8 hidden">
+      <p class="text-slate-300 text-sm" data-i18n="dues.canceled">The payment was cancelled — nothing was charged. You can try again below.</p>
+    </div>
+
+    <!-- Payment form -->
+    <form id="form-dues" class="card-luxury p-8 mt-8 space-y-5 text-xs" novalidate>
+      <div>
+        <span class="block text-slate-300 uppercase font-cinzel tracking-wider mb-3" data-i18n="dues.tier">Membership tier</span>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="card-luxury p-5 cursor-pointer border-gold-500/30 has-[:checked]:border-gold-500 has-[:checked]:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+            <input type="radio" name="tier" value="cercle" checked class="accent-[#d4af37] mr-2">
+            <span class="font-cinzel text-white">Le Cercle</span>
+            <div class="font-cinzel text-2xl text-gold-400 mt-2">$1,850 <span class="text-xs text-slate-400 font-sans" data-i18n="member.year">CAD / Year</span></div>
+          </label>
+          <label class="card-luxury p-5 cursor-pointer border-gold-500/30 has-[:checked]:border-gold-500 has-[:checked]:shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+            <input type="radio" name="tier" value="fondateur" class="accent-[#d4af37] mr-2">
+            <span class="font-cinzel text-gold-gradient">Le Fondateur</span>
+            <div class="font-cinzel text-2xl text-gold-gradient mt-2">$4,500 <span class="text-xs text-slate-400 font-sans" data-i18n="member.year">CAD / Year</span></div>
+          </label>
+        </div>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <div><label for="dues-name" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="apply.name">Full legal name</label><input id="dues-name" name="name" type="text" required minlength="2" maxlength="120" autocomplete="name" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
+        <div><label for="dues-email" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="dues.email">Email (for the receipt)</label><input id="dues-email" name="email" type="email" required maxlength="160" autocomplete="email" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none"></div>
+      </div>
+      <div><label for="dues-ref" class="block text-slate-300 uppercase font-cinzel tracking-wider mb-1" data-i18n="dues.ref">Application reference (from your acceptance email, e.g. MCC-1A2B3C4D)</label><input id="dues-ref" name="ref" type="text" maxlength="20" placeholder="MCC-" pattern="^(MCC-[A-Za-z0-9]{4,12})?$" class="w-full bg-obsidian border border-slate-700 rounded px-3 py-2.5 text-slate-200 focus:border-gold-500 focus:outline-none font-mono"></div>
+      <p class="form-status hidden text-sm rounded px-3 py-2" role="status" aria-live="polite"></p>
+      <button type="submit" class="btn-gold w-full py-3.5 rounded font-cinzel font-bold tracking-widest uppercase" data-i18n="dues.submit">Pay Securely with Stripe</button>
+      <p class="text-[11px] text-slate-500 text-center" data-i18n="dues.note">You will be redirected to Stripe's secure checkout. Dues are payable within 14 days of acceptance; membership begins on payment (see Terms).</p>
+    </form>
+  </main>
+
+  <footer class="border-t border-gold-500/20 py-10 text-center text-xs text-slate-500">
+    <a href="/" class="hover:text-gold-400" data-i18n="legal.back">← Back to the club</a> · <a href="/terms" class="hover:text-gold-400" data-i18n="footer.terms">Terms</a> · <a href="/privacy" class="hover:text-gold-400" data-i18n="footer.privacy">Privacy</a>
+    <p class="mt-2" data-i18n="footer.copy">© 2026 Montreal Cigar Club. All rights reserved.</p>
+  </footer>
+
+  <script src="js/i18n.js?v=20260830b"></script>
+  <script>
+    window.MCC_I18N.init();
+    document.getElementById('lang-toggle-btn').addEventListener('click', () => window.MCC_I18N.toggle());
+    const L = (k) => window.MCC_I18N.t(k) || '';
+    const form = document.getElementById('form-dues');
+    const status = form.querySelector('.form-status');
+    const show = (msg, kind) => { status.textContent = msg; status.className = 'form-status text-sm rounded px-3 py-2 ' + (kind === 'ok' ? 'bg-emerald-950/70 text-emerald-300 border border-emerald-500/30' : 'bg-red-950/60 text-red-300 border border-red-500/30'); };
+
+    const q = new URLSearchParams(location.search);
+    if (q.get('canceled')) document.getElementById('pay-cancel').classList.remove('hidden');
+    if (q.get('paid') && q.get('session_id')) {
+      fetch('/api/pay/status?session_id=' + encodeURIComponent(q.get('session_id')))
+        .then(r => r.json()).then(d => {
+          if (d.ok && d.paid) {
+            document.getElementById('pay-success').classList.remove('hidden');
+            form.classList.add('hidden');
+            document.getElementById('pay-success-detail').textContent =
+              `$${(d.amount / 100).toLocaleString()} ${d.currency} · ${d.tier === 'fondateur' ? 'Le Fondateur' : 'Le Cercle'}` + (d.ref ? ` · ${d.ref}` : '');
+          }
+        }).catch(() => {});
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true; const label = btn.textContent; btn.textContent = L('form.sending');
+      try {
+        const data = Object.fromEntries(new FormData(form).entries());
+        data.lang = window.MCC_I18N.lang;
+        const r = await fetch('/api/pay/create', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+        const d = await r.json();
+        if (r.ok && d.ok && d.url) { location.href = d.url; return; }
+        show(r.status === 503 ? L('dues.notReady') : (L('form.err')), 'err');
+      } catch (err) { show(L('form.err'), 'err'); }
+      btn.disabled = false; btn.textContent = label;
+    });
+  </script>
+</body>
+</html>

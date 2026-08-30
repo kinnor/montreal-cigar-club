@@ -141,3 +141,26 @@ Pages Functions cannot use the `send_email` binding, so the site calls the Email
 Senders/recipients are set in `wrangler.toml` `[vars]`: `MAIL_TO` (committee inbox) and `MAIL_FROM` (must be on the onboarded domain).
 
 **Gotcha (verified 2026-08-30):** Email Sending returns `10203 email.sending_disabled` when the recipient is an address on a domain that uses Cloudflare Email Routing (e.g. `admissions@montrealcigarclub.ca`). Point `MAIL_TO` at the *verified destination* (the Gmail address) instead — `admissions@` still forwards inbound mail from applicants; the site's notifications simply go to the inbox directly. Status 2026-08-30: token installed, domain onboarded, applicant acknowledgements delivering (`mail: rest`).
+
+## 10. Stripe payments (membership dues) — one-time setup
+
+Architecture mirrors the Accord & Harmony implementation: server-created **Stripe hosted Checkout** sessions,
+a **signature-verified webhook**, and payment records — adapted to Pages Functions + KV and Stripe's REST API
+(no SDK/build step). Prices live server-side in `functions/_stripe.js` (`DUES`): Cercle $1,850 / Fondateur $4,500 CAD.
+
+| Piece | Where |
+|---|---|
+| Payment page (bilingual, tier + reference) | `web_root/dues.html` → https://montrealcigarclub.ca/dues |
+| Create Checkout session | `POST /api/pay/create` (`functions/api/pay/create.js`, rate-limited 10/h/IP) |
+| Success-page confirmation | `GET /api/pay/status?session_id=…` |
+| Webhook (source of truth) | `POST /api/pay/webhook` — verifies `Stripe-Signature`, stores `pay:paid:…` in KV, emails the committee |
+
+**Setup:**
+1. Stripe Dashboard (stripe.com) → create/use the club account → **Developers → API keys** → copy the **Secret key** (`sk_live_…`; use `sk_test_…` first to test).
+2. Save it to `secrets/mcc-stripe-secret-key.txt`, then:
+   `powershell -ExecutionPolicy Bypass -File scripts/with-secrets.ps1 npx wrangler pages secret put STRIPE_SECRET_KEY --project-name=montreal-cigar-club` (paste/pipe the key)
+3. **Developers → Webhooks → Add endpoint**: URL `https://montrealcigarclub.ca/api/pay/webhook`, event `checkout.session.completed` → copy the **Signing secret** (`whsec_…`) → save to `secrets/mcc-stripe-webhook-secret.txt` → `wrangler pages secret put STRIPE_WEBHOOK_SECRET …` the same way.
+4. Redeploy (secrets bind on the next deployment). Test with Stripe test keys + card `4242 4242 4242 4242`.
+
+Until the secrets exist, `/dues` shows "Online payment is not yet activated" (API returns 503) — safe to ship.
+Payment records: `pay:paid:*` keys in KV `MCC_SUBMISSIONS`; pending sessions auto-expire after 48 h.

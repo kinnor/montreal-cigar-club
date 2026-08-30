@@ -3,80 +3,83 @@
 **Project Name:** Montreal Cigar Club (*Club de Cigare de Montréal*)  
 **Location:** Montreal, Quebec, Canada  
 **Created:** August 2026  
-**Local Project Directory:** `D:\Data Files\Project\Research\Montreal_Cigar_Club`
+**Local Project Directory:** `D:\Data Files\Project\Research\Montreal_Cigar_Club`  
+**Web Root Directory:** `D:\Data Files\Project\Research\Montreal_Cigar_Club\web_root`
 
 ---
 
-## 1. Registered Web Domains & Cloudflare Infrastructure
+## 1. Web Domains & Cloudflare Infrastructure
 
-The club's official domain assets have been successfully acquired and registered:
-
-| Registered Domain | Registrar | Status | Strategic Role |
+| Registered Domain | Registrar | Status | Role |
 | :--- | :--- | :--- | :--- |
-| **`montrealcigarclub.ca`** | **Cloudflare Registrar** | ✅ **Active / Owned** | **Primary Canonical Domain** (*Official Website & Identity*) |
-| **`mtlcigarclub.ca`** | **Cloudflare Registrar** | ✅ **Active / Owned** | **Short URL / Fast Redirect** (*Directs to primary domain*) |
-| **`mtlcigarclub.com`** | **Cloudflare Registrar** | ✅ **Active / Owned** (added 2026-08-29) | **Short URL, global .com** (*301 redirect to primary domain*) |
+| **`montrealcigarclub.ca`** | **Cloudflare Registrar** | ✅ **Active / Owned** | **Primary Canonical Domain** (*Official Web Identity*) |
+| **`mtlcigarclub.ca`** | **Cloudflare Registrar** | ✅ **Active / Owned** | **Short Brand URL** (*301 Permanent Redirect*) |
 
-### Cloudflare Deployment & Architecture Setup
-* **Hosting Platform:** **Cloudflare Pages** (100% free, zero-latency global edge CDN, unlimited bandwidth).
-* **SSL Security:** Automated Universal SSL (`HTTPS`) provided natively by Cloudflare edge.
-* **DNS Redirection:** Cloudflare Redirect Rule (301 Permanent):  
-  `https://mtlcigarclub.ca/*` ➔ `https://montrealcigarclub.ca/$1`  
-  `https://mtlcigarclub.com/*` ➔ `https://montrealcigarclub.ca/$1`
-* **Email Routing (Free) — ✅ ACTIVE since 2026-08-29.** Cloudflare Email Routing forwards these addresses to the founder's private inbox (rossen.kinov@gmail.com):
-  * `concierge@montrealcigarclub.ca` ➔ Private Personal Email
-  * `admissions@montrealcigarclub.ca` ➔ Private Personal Email
-  * `vault@montrealcigarclub.ca` ➔ Private Personal Email
+### Cloudflare Services Configured
+* **Cloudflare Pages:** 100% free hosting deployed directly from `web_root/` with global edge CDN & Universal SSL.
+* **DNS 301 Permanent Redirect:** `https://mtlcigarclub.ca/*` ➔ `https://montrealcigarclub.ca/$1`
+* **Free Email Routing:**
+  * `vault@montrealcigarclub.ca` ➔ Active routing to personal email (inquiry lead capture).
+  * `concierge@montrealcigarclub.ca` ➔ Forwarding to personal email.
+  * Free outbound reply integration via Brevo/Resend free SMTP.
 
 ---
 
-## 2. Brand Identity & Visual Assets
+## 2. Business Model & Monetization Strategy (The Hybrid Catalyst)
 
-All high-resolution visual assets are permanently stored in the local project repository:
-
-| Asset Name | Filename | Description | File Link |
-| :--- | :--- | :--- | :--- |
-| **Logo (Option 1)** | `Montreal_Cigar_Club_Logo_Royal_Gold.jpg` | Royal gold-leaf crest with crossed cigars, Quebec Fleur-de-lis crown, and embossed black leather background. | [Open Logo 1](file:///d:/Data%20Files/Project/Research/Montreal_Cigar_Club/Montreal_Cigar_Club_Logo_Royal_Gold.jpg) |
-| **Logo (Option 2)** | `Montreal_Cigar_Club_Logo_Emerald_Seal.jpg` | Heritage circular seal in rose/champagne gold with Mount Royal & Notre-Dame silhouette on deep British racing emerald. | [Open Logo 2](file:///d:/Data%20Files/Project/Research/Montreal_Cigar_Club/Montreal_Cigar_Club_Logo_Emerald_Seal.jpg) |
-| **Event Advertisement** | `Montreal_Cigar_Club_Event_Advertisement.jpg` | Luxury poster featuring a private Montreal penthouse tasting lounge, lit Maduro cigar, crystal tumbler, and gold typography. | [Open Flyer](file:///d:/Data%20Files/Project/Research/Montreal_Cigar_Club/Montreal_Cigar_Club_Event_Advertisement.jpg) |
-| **Website Concept Mockup**| `Website_Concept_2_Midnight_Obsidian.jpg` | High-fidelity desktop UI layout featuring midnight obsidian design system and amber lighting. | [Open Mockup](file:///d:/Data%20Files/Project/Research/Montreal_Cigar_Club/Website_Concept_2_Midnight_Obsidian.jpg) |
-
----
-
-## 3. Web Prototype Build (Production Files)
-
-The fully functional interactive website code is stored locally:
-
-* 🌐 **`index.html`** — [`Open Prototype`](file:///d:/Data%20Files/Project/Research/Montreal_Cigar_Club/index.html)  
-  *Features: Live Climate Telemetry (`19.5°C · 69.2% RH`), Bilingual EN/FR Switcher, Ambient Vinyl Audio Engine, Vitola Dossier Cards, Interactive Pairing Harmonizer, Penthouse Soirée RSVP, Membership Tiers, and Vault Login.*
-* 🎨 **`styles.css`** — [`Open CSS`](file:///d:/Data%20Files/Project/Research/Montreal_Cigar_Club/styles.css) *(Midnight Obsidian & 24K Brushed Gold Design System)*
-* ⚡ **`app.js`** — [`Open JS`](file:///d:/Data%20Files/Project/Research/Montreal_Cigar_Club/app.js) *(Interactive Pairing Algorithm, Telemetry Tick, Web Audio Synth)*
+```
+┌────────────────────────────────────────────────────────┬───────────────────────────────────┬───────────────────────────────────────────┐
+│ Strategy Component                                     │ Operation / Price Point           │ Financial & Strategic Impact              │
+├────────────────────────────────────────────────────────┼───────────────────────────────────┼───────────────────────────────────────────┤
+│ A. Monthly Tasting Salons (Direct Cash Flow)           │ 20 guests @ $200–$250 CAD/ticket  │ ~$1,400 – $1,800 net cash profit / night  │
+│ B. The "Power Network" Engine (Deal Flow)              │ 15–20 curated VIP Montreal guests │ $50k – $500k+ in private business deals   │
+│ C. Bespoke B2B Corporate Tastings                      │ $3,500 – $7,500 CAD per booking   │ Turnkey corporate & private retreats      │
+│ D. Annual Membership Tiers                             │ $1,850 – $4,500 CAD / member      │ $50,000 – $80,000 / yr recurring revenue  │
+│ E. Liquor Distributor Sponsorships                     │ Free rare bottles (Hennessy/Remy) │ Drops beverage expenses to $0             │
+└────────────────────────────────────────────────────────┴───────────────────────────────────┴───────────────────────────────────────────┘
+```
 
 ---
 
-## 4. Cigar Portfolio & Market Intelligence (Montreal Sourcing)
+## 3. Venue & Event Logistics Blueprint
 
-### Featured Vitolas
-1. **Padrón 1964 Anniversary Series (Principe Maduro — 4 ½" × 46):**  
-   *94 Pts | 4-Year Aged Nicaraguan Puro | Dark cocoa, espresso, black pepper.*  
-   *Sourcing:* ~$28.67 CAD via [Cigar Chief](https://cigarchief.com) (or ~$13.50 USD in Plattsburgh NY under 48h duty-free exemption).
-2. **E.P. Carrillo Encore (Majestic — 5 ⅜" × 52 / Celestial — 6 ⅛" × 50):**  
-   *96 Pts | #1 Cigar of the Year (Cigar Aficionado) | Tercio-aged Nicaraguan puro | Sweet cedar, baking spice, caramel, citrus zest.*
-3. **My Father Le Bijou 1922 (Torpedo Box-Pressed — 6 ⅛" × 52):**  
-   *97 Pts | #1 Cigar of the Year | Habano Oscuro wrapper | Black pepper, dark raisin, rich cocoa (~$36–$40 CAD).*
+### A. Kahnawake Locations *(15–20 min from Montreal — 100% Smoking Permitted)*
+* **Dreamcatcher Cigar Lounge** *(Route 138, Kahnawake)*: Private rooms, scotch bar, leather lounge, year-round indoor legal smoking under reserve jurisdiction.
+* **Mirela’s Steakhouse & Cigar Lounge** *(Route 132, Kahnawake)*: Ideal for full culinary dinners paired with cigars.
+* **Little Havana Lounge** *(Kahnawake)*: Alternative lounge option.
 
----
+### B. Downtown & Old Montreal Locations *(Penthouse & Summer Terraces)*
+* **Peerspace / Luxury Penthouse Rentals:** Private rooftop terrace lofts in Old Montreal and Griffintown for spring/summer/fall tasting salons.
+* **Old Port Private Boat Charter:** Annual summer VIP sunset tasting cruise on the St. Lawrence River.
 
-## 5. Audiophile Sound Architecture (For Outdoor Tastings)
-
-* **Top Pick:** **Bang & Olufsen Beosound A1 (2nd Gen)**  
-  *Discrete 0.6" silk-dome tweeter + 3.5" aluminum woofer, dual 30W Class D amps (280W peak), IP67 dust/waterproof, Lossless direct USB-C DAC playback, ~$180–$230 CAD (Refurb/Open Box).*
-* **Backups:** **Klipsch Nashville** (24h battery + phone charging + 360° sound) & **EarFun UBOOM L** ($65 CAD studio neutral tuning).
+### C. Entertainment & Music Setup
+* **Live Vinyl DJ:** Spinning warm analog Afro-Cuban jazz, Oscar Peterson, Miles Davis, Bossa Nova, and French downtempo.
+* **Live Acoustic Soloist:** Live jazz saxophone or Spanish guitar during the initial lighting ceremony.
+* **Audiophile Sound:** Powered by B&O / warm analog acoustic hardware.
 
 ---
 
-## 6. Social & International Communications Record
+## 4. Brand Design & Navbar Integration (Option 2 Selected)
 
-**Meißen Peter Lupprich German Tasting Response:**
-> *"Haha, nicht schlecht für Meißen! 😂 Aber seien wir mal ehrlich: Es gibt einfach nichts Besseres als den **Montreal Cigar Club**! 🇨🇦💨🥃  
-> Hier wird standesgemäß mit einer **E.P. Carrillo Encore Majestic** genossen. Wenn du mal hier bist, lade ich dich ein!"*
+* **Top Bar Design:** **Option 2 (Refined Horizontal Insignia Lockup)**
+  * Features a **48px Royal Gold Crest** badge on the left (`assets/Montreal_Cigar_Club_Logo_Royal_Gold.jpg`) with gold-foil glow.
+  * Balanced two-tier typography: **`MONTREAL`** (Cinzel uppercase gold gradient) + **`CIGAR CLUB`** (spaced subtext).
+  * Menu navigation: `THE HUMIDOR` · `PAIRING ENGINE` · `EVENTS` · `THE VAULT` · `MEMBERSHIP` · `ABOUT`.
+
+---
+
+## 5. Web Root Production Files
+
+* 🌐 **`web_root/index.html`** — Complete standalone luxury experience.
+* 🎨 **`web_root/css/styles.css`** — Obsidian & 24K gold stylesheet.
+* ⚡ **`web_root/js/app.js`** — Pairing Engine algorithm, live telemetry ticker, Web Audio vinyl synth.
+* 🛡️ **`web_root/_headers` & `_redirects`** — Cloudflare Pages security & routing files.
+* 🖼️ **`web_root/assets/`** — All logos, event posters, and UI concepts.
+
+---
+
+## 6. Curated Cigar Portfolio & Sourcing Benchmark
+
+1. **Padrón 1964 Anniversary Series (Principe Maduro — 4 ½" × 46):** 94 Pts | 4-Year Aged Nicaraguan Puro (~$28.67 CAD via Cigar Chief).
+2. **E.P. Carrillo Encore (Majestic — 5 ⅜" × 52):** 96 Pts | #1 Cigar of the Year | Tercio-cured Nicaraguan wrapper (~$35 CAD).
+3. **My Father Le Bijou 1922 (Torpedo Box-Pressed — 6 ⅛" × 52):** 97 Pts | #1 Cigar of the Year (~$36–$40 CAD).
