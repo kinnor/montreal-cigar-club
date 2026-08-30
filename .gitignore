@@ -34,3 +34,6 @@ memories.md
 # ---- Original high-res artwork (kept locally; web_root/assets holds optimised versions) ----
 /*.jpg
 /assets/
+
+# Stripe keys — never commit
+/stripe/
