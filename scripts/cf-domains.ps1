@@ -35,6 +35,7 @@ $zones | ForEach-Object { Write-Host "zone: $($_.name)  id=$($_.id)  status=$($_
 $zMain = $zones | Where-Object name -eq 'montrealcigarclub.ca'
 $zMtl  = $zones | Where-Object name -eq 'mtlcigarclub.ca'
 $zMtlCom = $zones | Where-Object name -eq 'mtlcigarclub.com'
+$zMainCom = $zones | Where-Object name -eq 'montrealcigarclub.com'
 
 # --- Pages custom domains
 Write-Host "`n== Pages custom domains on $PROJECT"
@@ -61,6 +62,11 @@ if ($zMtlCom) {
   Ensure-Dns $zMtlCom.id 'AAAA' 'mtlcigarclub.com' '100::'
   Ensure-Dns $zMtlCom.id 'AAAA' 'www.mtlcigarclub.com' '100::'
 } else { Write-Host 'zone mtlcigarclub.com not visible (not yet added to this Cloudflare account?)' }
+if ($zMainCom) {
+  Write-Host "`n== DNS on montrealcigarclub.com (proxied placeholders for Worker route)"
+  Ensure-Dns $zMainCom.id 'AAAA' 'montrealcigarclub.com' '100::'
+  Ensure-Dns $zMainCom.id 'AAAA' 'www.montrealcigarclub.com' '100::'
+} else { Write-Host 'zone montrealcigarclub.com not visible' }
 
 Write-Host "`n== Pages domain status"
 (CF GET "/accounts/$ACCOUNT/pages/projects/$PROJECT/domains").result | ForEach-Object { Write-Host "  $($_.name): $($_.status) / cert=$($_.certificate_authority) / validation=$($_.validation_data.status)" }

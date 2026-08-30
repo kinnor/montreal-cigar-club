@@ -14,10 +14,12 @@
 | :--- | :--- | :--- | :--- |
 | **`montrealcigarclub.ca`** | **Cloudflare Registrar** | ✅ **Active / Owned** | **Primary Canonical Domain** (*Official Web Identity*) |
 | **`mtlcigarclub.ca`** | **Cloudflare Registrar** | ✅ **Active / Owned** | **Short Brand URL** (*301 Permanent Redirect*) |
+| **`mtlcigarclub.com`** | **Cloudflare Registrar** | ✅ **Active / Owned** (2026-08-29) | **Short .com** (*301 Permanent Redirect*) |
+| **`montrealcigarclub.com`** | **Cloudflare Registrar** | ✅ **Active / Owned** (2026-08-30) | **Full-name .com — brand protection** (*301 Permanent Redirect*) |
 
 ### Cloudflare Services Configured
 * **Cloudflare Pages:** 100% free hosting deployed directly from `web_root/` with global edge CDN & Universal SSL.
-* **DNS 301 Permanent Redirect:** `https://mtlcigarclub.ca/*` ➔ `https://montrealcigarclub.ca/$1`
+* **DNS 301 Permanent Redirect:** `https://mtlcigarclub.ca/*`, `https://mtlcigarclub.com/*`, `https://montrealcigarclub.com/*` ➔ `https://montrealcigarclub.ca/$1`
 * **Free Email Routing:**
   * `vault@montrealcigarclub.ca` ➔ Active routing to personal email (inquiry lead capture).
   * `concierge@montrealcigarclub.ca` ➔ Forwarding to personal email.

@@ -2,7 +2,7 @@
 $ErrorActionPreference = 'Stop'
 $H = @{ Authorization = "Bearer $env:CLOUDFLARE_API_TOKEN" }
 $API = 'https://api.cloudflare.com/client/v4'
-$zones = @{ 'montrealcigarclub.ca' = 'ef3b323fd11f4755c00a283d229d15fd'; 'mtlcigarclub.ca' = 'c6be3b8d6efcf738317e466c71870435' }
+$zones = @{ 'montrealcigarclub.ca' = 'ef3b323fd11f4755c00a283d229d15fd'; 'mtlcigarclub.ca' = 'c6be3b8d6efcf738317e466c71870435'; 'montrealcigarclub.com' = '' }
 foreach ($z in $zones.GetEnumerator()) {
   try {
     $r = Invoke-RestMethod -Headers $H -Uri "$API/zones/$($z.Value)/dns_records"

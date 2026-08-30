@@ -1,6 +1,6 @@
 # Deployment — Cloudflare Pages + Workers
 
-Canonical domain: **montrealcigarclub.ca** · Redirect domains: **mtlcigarclub.ca**, **mtlcigarclub.com** (301 → canonical)
+Canonical domain: **montrealcigarclub.ca** · Redirect domains: **montrealcigarclub.com**, **mtlcigarclub.ca**, **mtlcigarclub.com** (301 → canonical)
 Both zones are on Cloudflare Registrar, so DNS/SSL/Pages/Workers live in one account.
 
 ## Layout

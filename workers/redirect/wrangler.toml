@@ -1,4 +1,4 @@
-# Cloudflare Worker — permanent redirect mtlcigarclub.ca / mtlcigarclub.com -> montrealcigarclub.ca
+# Cloudflare Worker — permanent redirect montrealcigarclub.com / mtlcigarclub.ca / mtlcigarclub.com -> montrealcigarclub.ca
 # Deploy (from repo root):  npx wrangler deploy --config workers/redirect/wrangler.toml
 # Prerequisite: a proxied DNS record must exist on mtlcigarclub.ca (e.g. AAAA @ 100:: or A @ 192.0.2.1)
 # so the route can attach. Alternative with zero code: a zone-level Redirect Rule (see docs/DEPLOYMENT.md).
@@ -9,6 +9,8 @@ compatibility_date = "2026-08-01"
 workers_dev = false
 
 routes = [
+  { pattern = "montrealcigarclub.com/*",     zone_name = "montrealcigarclub.com" },
+  { pattern = "www.montrealcigarclub.com/*", zone_name = "montrealcigarclub.com" },
   { pattern = "mtlcigarclub.ca/*",     zone_name = "mtlcigarclub.ca" },
   { pattern = "www.mtlcigarclub.ca/*", zone_name = "mtlcigarclub.ca" },
   { pattern = "mtlcigarclub.com/*",     zone_name = "mtlcigarclub.com" },
