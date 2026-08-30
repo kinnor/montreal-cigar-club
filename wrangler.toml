@@ -21,5 +21,5 @@ id = "86439abda36f425dbd499949866a6344"
 #   wrangler pages secret put EMAIL_API_TOKEN --project-name=montreal-cigar-club
 
 [vars]
-MAIL_TO = "admissions@montrealcigarclub.ca"
+MAIL_TO = "rossen.kinov@gmail.com"   # Email Sending cannot deliver TO the routed club domain (error 10203); use the verified destination directly
 MAIL_FROM = "admissions@montrealcigarclub.ca"

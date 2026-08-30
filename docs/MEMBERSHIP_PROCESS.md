@@ -77,7 +77,7 @@ The sponsor writes a **five-line note** to the committee thread the same day: wh
 
 | Need | How |
 |---|---|
-| Be notified of each application / RSVP | Email to `MAIL_TO` (`admissions@montrealcigarclub.ca`) — forward that address to the founders' private inboxes with Cloudflare Email Routing |
+| Be notified of each application / RSVP | Email from `admissions@montrealcigarclub.ca` to `MAIL_TO` (the founder's verified inbox). Applicants write back to `admissions@`, which Email Routing forwards to the same inbox |
 | Read all records | `GET https://montrealcigarclub.ca/api/admin/submissions?kind=apply` with `Authorization: Bearer <ADMIN_TOKEN>` |
 | Update a record's status | `POST https://montrealcigarclub.ca/api/admin/submissions` body `{"id":"sub:apply:…","status":"conversation","note":"…"}` (same Bearer token) |
 | Release RSVP seats (cancellation) | same endpoint with `{"id":"sub:rsvp:…","status":"cancelled"}` — seats return to the pool automatically |

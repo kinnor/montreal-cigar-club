@@ -139,3 +139,5 @@ Pages Functions cannot use the `send_email` binding, so the site calls the Email
 4. Redeploy (or the next deploy picks it up). Submit a test application; the record's `mail` field turns from `skipped` to `rest`.
 
 Senders/recipients are set in `wrangler.toml` `[vars]`: `MAIL_TO` (committee inbox) and `MAIL_FROM` (must be on the onboarded domain).
+
+**Gotcha (verified 2026-08-30):** Email Sending returns `10203 email.sending_disabled` when the recipient is an address on a domain that uses Cloudflare Email Routing (e.g. `admissions@montrealcigarclub.ca`). Point `MAIL_TO` at the *verified destination* (the Gmail address) instead — `admissions@` still forwards inbound mail from applicants; the site's notifications simply go to the inbox directly. Status 2026-08-30: token installed, domain onboarded, applicant acknowledgements delivering (`mail: rest`).
